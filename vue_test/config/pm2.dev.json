@@ -1,0 +1,18 @@
+{
+    "apps" : [
+        {
+            "name"        : "test",
+            "cwd"         : "/Users/Charles/test_xx",
+            "script"      : "server/app.js",
+            "watch"       : ["server"],
+            "ignore_watch" : ["node_modules", "client/img"],
+            "env": {
+                "NODE_ENV": "development"
+            },
+            "log_date_format": "YYYY-MM-DD HH:mm Z",
+            "error_file": "logs/error",
+            "out_file": "logs/out",
+            "pid_file": "/dev/null"
+        }
+    ]
+  }

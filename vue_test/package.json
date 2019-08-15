@@ -1,0 +1,21 @@
+{
+  "name": "test1",
+  "version": "1.0.0",
+  "description": "xxx",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "ejs": "^2.6.1",
+    "express": "^4.16.4",
+    "glob": "^7.1.4",
+    "mysql": "github:mysqljs/mysql",
+    "pm2": "^3.5.1",
+    "serve-static": "^1.14.1",
+    "vue": "^2.6.10",
+    "vue-router": "^3.0.7"
+  }
+}
