@@ -12,6 +12,7 @@ import Index from './index/index.vue';
 import Detail from './detail/index.vue';
 import Select from './select/index.vue';
 import Pay from './pay/index.vue';
+import Receivemethod from './receivemethod/index.vue';
 
 
 
@@ -28,6 +29,9 @@ let router = new VueRouter({
         },
         {
           path: '/pay', component: Pay
+        },
+        {
+          path: '/receivemethod', component:Receivemethod
         }
     ]
 });

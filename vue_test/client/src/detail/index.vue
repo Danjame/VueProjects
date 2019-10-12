@@ -120,7 +120,7 @@ a {
             <div class="goods-info">
                 <div class="goods-title">{{goodInfo.good_title}}</div>
                 <div class="goods-price">
-                    ￥{{price.join('-')}}
+                    ￥{{price_range.join('-')}}
                     <span class="goods-status" v-if="goodInfo.goods_status === 2">预售</span>
                     <span class="goods-status notsales" v-if="goodInfo.goods_status === 4">下架</span>
                 </div>
@@ -141,7 +141,7 @@ a {
         </div>
         <div class="btn-box">
             <div class="btn-purchase">
-                <router-link exact :to="{ path: '/select', query:{id: this.$route.query.id }}">
+                <router-link exact :to="{ path: '/select', query:{id: this.$route.query.id}}">
                     立即购买
                 </router-link>
             </div>
@@ -154,6 +154,7 @@ export default {
         return {
             goods: {},
             price: [],
+            price_range: this.$route.query.price_range,
             goodInfo: {},
             goodImg: {},
             size: []
@@ -171,7 +172,7 @@ export default {
                     this.goods = res.data.data;
                     this.price = this.goods.price.map(function(price) {
                         return price.good_price;
-                    });
+                    });                   
                     this.goodInfo = this.goods.info[0];
                     this.goodImg = this.goods.imgs[1];
                     this.size = this.goods.size;

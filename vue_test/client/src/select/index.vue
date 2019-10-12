@@ -89,7 +89,7 @@ a {
         <div class="color-box">
             <div class="item-title">选择颜色</div>
             <ul class="item-color">
-                <li v-for="(item, index) in data" :class="{active:index === currentColor}" @click="selectColor(index)">
+                <li v-for="(item, index) in data" :class="{active:index === clickEvent.currentColor}" @click="selectColor(index)">
                     <div><img :src="item.image" alt=""></div>
                     <div>{{item.color}}</div>
                 </li>
@@ -98,18 +98,18 @@ a {
         <div class="size-box">
             <div class="item-title">选择尺码</div>
             <ul class="item-size">
-                <li v-for="(item, index) in data" :class="{active:index === currentSize}" @click="selectSize(index)">{{item.size}}</li>
+                <li v-for="(item, index) in data" :class="{active:index === clickEvent.currentSize}" @click="selectSize(index)">{{item.size}}</li>
             </ul>
         </div>
         <div class="quantity-box">
             <div class="item-title">选择数量</div>
             <ul class="item-quantity">
-                <li v-for = "(item, index) in quantity" :class="{active:index === currentNum}" @click="selectNum(index)">{{item}}</li>
+                <li v-for = "(item, index) in quantity" :class="{active:index === clickEvent.currentNum}" @click="selectNum(index)">{{item}}</li>
             </ul>
         </div>
         <div class="confirm-btn">
-            <router-link exact :to="{ path: '/pay', query:{id: this.$route.query.id }}">
-                下一步
+            <router-link exact :to="{ path: '/receivemethod', query:{id: this.$route.query.id, product: this.result}}">
+                ￥{{this.result.total}} 下一步
             </router-link>
         </div>
     </div>
@@ -119,22 +119,39 @@ export default {
     data() {
         return {
             data: {},
-            currentColor: 0,
-            currentSize: 0,
-            currentQt: 0,
-            currentNum: 0,
+            price: [],
             quantity: [],
+            clickEvent: {
+                currentColor: null,
+                currentSize: null,
+                currentQt: null,
+                currentNum: null,
+            },
+            result: {
+                image: null,
+                color: null,
+                size: null,
+                quantity: null,
+                unit: null,
+                total: null,
+            },
         }
     },
     methods: {
         selectColor(index) {
-            this.currentColor = index;
+            this.clickEvent.currentColor = index;
+            this.result.color = this.data[index].color;
+            this.result.image = this.data[index].image;
         },
         selectSize(index) {
-            this.currentSize = index;
+            this.clickEvent.currentSize = index;
+            this.result.size = this.data[index].size;
+            this.result.unit = this.price[index];
         },
         selectNum(index) {
-            this.currentNum = index;
+            this.clickEvent.currentNum = index;
+            this.result.quantity = index+1;
+            this.result.total = this.result.unit*this.result.quantity;
         }
     },
     mounted() {
@@ -150,12 +167,13 @@ export default {
                     for (let i = 1; i <= this.data.length; i++) {
                         this.quantity.push(i);
                     };
+                    this.price = res.data.data.price.map(function(price) {
+                        return price.good_price;
+                    }); 
                     return
                 }
                 alert(res.data.status.msg);
-
             });
-
-    }
+    },
 }
 </script>

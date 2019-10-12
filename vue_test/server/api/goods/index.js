@@ -4,7 +4,6 @@ const db = require('../../utils/db');
 
 router.get('/all', async (req, res) => {
     // const { id } = req.query;
-
     const goods = await db.query('select * from good');
     const goods_id = [];
     goods.forEach((good) => {

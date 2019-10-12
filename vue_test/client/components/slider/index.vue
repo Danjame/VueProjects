@@ -6,10 +6,10 @@
                     <img v-bind:src="item.imgs[0]" />
                 </div>
                 <div class="goods-item-title">{{item.good_title}}</div>
-                <div class="goods-item-price">￥{{item.price.join('~')}}</div>
+                <div class="goods-item-price">￥{{range.join('~')}}</div>
                 <div class="goods-item-buybtn">
                     <span>
-                        <router-link exact :to="{ path: '/detail', query:{id: item.good_id }}">立即购买</router-link>
+                        <router-link exact :to="{ path: '/detail', query:{id: item.good_id, price_range: range}}">立即购买</router-link>
                     </span>
                 </div>
             </div>
@@ -52,7 +52,7 @@ const TimerUtils = (function() {
 })();
 export default {
     name: 'slider',
-    props: ['datas', 'params'],
+    props: ['datas', 'range', 'params'],
     data() {
         return {
             list: [],
@@ -88,6 +88,9 @@ export default {
         });
     },
     computed: {
+        priceCount: function(){
+            return 
+        },
         itemCount: function() {
             return this.datas.length;
         },

@@ -118,17 +118,18 @@ a {
             选择支付方式
         </div>
         <div class="head">
-            <div class="goods-img"><img :src="img[1].good_img"></div>
+            <!-- <div class="goods-img"><img :src="img[1].good_img"></div> -->
+            <div class="goods-img"><img :src="product.image"></div>
             <div class="goods-info">
-                <div class="goods-title">{{data.info[0].good_title}}</div>
+                <div class="goods-title">{{goodsTitle}}</div>
             </div>
             <div class="goods-detail-box">
                 <div class="goods-detail">
                     <div class="goods-price">
-                        ￥{{data.result[0][1].good_price}}
+                        ￥{{product.total}}
                     </div>
                     <span class="goods-num">
-                        1
+                        {{product.quantity}}
                     </span>
                 </div>
             </div>
@@ -139,7 +140,7 @@ a {
              @click="selectPayment(index)">{{item}}</div>
         <div class="btn-purchase">
             <router-link exact :to="{ path: '/select', query:{id: this.$route.query.id }}">
-                立即购买
+                去支付
             </router-link>
         </div>
     </div>
@@ -149,9 +150,11 @@ export default {
     data() {
         return {
             data: {},
+            goodsTitle: null,
             method: {},
             img: {},
-            currentNum:0,
+            currentNum: null,
+            product: this.$route.query.product
         }
     },
     methods:{
@@ -163,16 +166,17 @@ export default {
         this.axios
             .get('/api/goods/pay', {
                 params: {
-                    id: this.$route.query.id
+                    id: this.$route.query.id,
                 },
             })
             .then(res => {
                 if (res.data.status.code === '200') {
                     this.data = res.data.data;
+                    this.goodsTitle = this.data.info[0].good_title;
                     this.img = this.data.result[1];
                     this.method = this.data.result[2].map(function(pay) {
                         return pay.method;
-                    });
+                    });                 
                     return;
                 }
                 alert(res.data.status.msg);
