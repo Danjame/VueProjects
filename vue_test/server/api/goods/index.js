@@ -2,8 +2,7 @@ const Router = require('express').Router;
 const router = Router();
 const db = require('../../utils/db');
 
-router.get('/all', async (req, res) => {
-    // const { id } = req.query;
+router.get('/', async (req, res) => {
     const goods = await db.query('select * from good');
     const goods_id = [];
     goods.forEach((good) => {
@@ -68,11 +67,12 @@ router.get('/detail', async (req, res) => {
         },
         data: {
             info,
-            price: result[0],
-            imgs: result[1],
-            property: result[2],
-            payment: result[3],
-            size: result[4]
+            result,
+            // price: result[0],
+            // imgs: result[1],
+            // property: result[2],
+            // payment: result[3],
+            // size: result[4]
         }
     })
 });

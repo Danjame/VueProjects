@@ -6,10 +6,10 @@
                     <img v-bind:src="item.imgs[0]" />
                 </div>
                 <div class="goods-item-title">{{item.good_title}}</div>
-                <div class="goods-item-price">￥{{range.join('~')}}</div>
+                <div class="goods-item-price">￥{{item.range}}</div>
                 <div class="goods-item-buybtn">
                     <span>
-                        <router-link exact :to="{ path: '/detail', query:{id: item.good_id, price_range: range}}">立即购买</router-link>
+                        <router-link :to="{ path: '/detail', query:{id: item.good_id,}}" @click="handleClick(item.range)">立即购买</router-link>
                     </span>
                 </div>
             </div>
@@ -50,9 +50,10 @@ const TimerUtils = (function() {
         }
     }
 })();
+import Bus from '../../src/bus.js'
 export default {
     name: 'slider',
-    props: ['datas', 'range', 'params'],
+    props: ['datas', 'params'],
     data() {
         return {
             list: [],
@@ -88,8 +89,8 @@ export default {
         });
     },
     computed: {
-        priceCount: function(){
-            return 
+        priceCount: function() {
+            return
         },
         itemCount: function() {
             return this.datas.length;
@@ -109,6 +110,9 @@ export default {
         }
     },
     methods: {
+        handleClick: function(item) {
+            Bus.$emit('getData', item);
+        },
         slideNext: function() {
             if (this.slideIndex == this.itemCount - 1) return;
             this.slideIndex++;
@@ -203,6 +207,7 @@ export default {
         }
 
         &-title {
+            height: 100px;
             margin-bottom: 16px;
             font-size: 24px;
         }

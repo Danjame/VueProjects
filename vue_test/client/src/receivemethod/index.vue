@@ -49,7 +49,10 @@ a {
         <div class="title">选择收货方式</div>
         <div class="method" v-html = "content":class="{selected: itemIndex == index }" v-for = "(content, index) in datas" @click = "select(index)">{{content}}</div>
         <div class = "confirm-btn">
-           <router-link :to="{path: '/', query: {id: this.$route.query.id}}">下一步
+            <div v-if = "itemIndex == null">下一步</div>
+           <router-link v-if = "itemIndex == 0" exact :to="{path: '/address', query: {id: this.$route.query.id}}">下一步
+           </router-link>
+            <router-link v-if = "itemIndex == 1" exact :to="{path: '/shops', query: {id: this.$route.query.id}}">下一步
            </router-link>
         </div>
         
@@ -61,6 +64,7 @@ export default {
         return {
         	datas: ["<p>送货上门</p><p>10公里以内的用户门店有货24小时内送达</p>", "<p>门店自提</p><p>您可以到附近门店自提</p>"],
         	itemIndex: null,
+            information:{}
         	}
         },
     methods: {
@@ -77,7 +81,8 @@ export default {
             })
             .then(res => {
                 if (res.data.status.code === '200') {
-                    this.data = res.data.data;
+                    console.log(res.data.data);
+                    // this.information = res.data.data;
                     return;
                 };
                 return;

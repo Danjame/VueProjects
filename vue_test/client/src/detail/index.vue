@@ -120,7 +120,7 @@ a {
             <div class="goods-info">
                 <div class="goods-title">{{goodInfo.good_title}}</div>
                 <div class="goods-price">
-                    ￥{{price_range.join('-')}}
+                    <!-- ￥{{price_range.join('-')}} -->
                     <span class="goods-status" v-if="goodInfo.goods_status === 2">预售</span>
                     <span class="goods-status notsales" v-if="goodInfo.goods_status === 4">下架</span>
                 </div>
@@ -149,19 +149,24 @@ a {
     </div>
 </template>
 <script>
+import Bus from '../../src/bus.js'
 export default {
     data() {
         return {
             goods: {},
             price: [],
-            price_range: this.$route.query.price_range,
             goodInfo: {},
             goodImg: {},
             size: []
         }
     },
-    mounted() {
-        this.axios
+    // activated: {
+
+                   
+        
+    // },
+    mounted(){
+         this.axios
             .get('/api/goods/detail', {
                 params: {
                     id: this.$route.query.id
@@ -169,17 +174,19 @@ export default {
             })
             .then(res => {
                 if (res.data.status.code === '200') {
+                    console.log(res.data.data);
                     this.goods = res.data.data;
                     this.price = this.goods.price.map(function(price) {
                         return price.good_price;
-                    });                   
+                    });
                     this.goodInfo = this.goods.info[0];
                     this.goodImg = this.goods.imgs[1];
                     this.size = this.goods.size;
                     return;
                 }
                 alert(res.data.status.msg);
-            })
+                
+            });
     }
 }
 </script>

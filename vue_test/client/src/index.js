@@ -13,6 +13,8 @@ import Detail from './detail/index.vue';
 import Select from './select/index.vue';
 import Pay from './pay/index.vue';
 import Receivemethod from './receivemethod/index.vue';
+import Address from './address/index.vue';
+import Shops from './shops/index.vue';
 
 
 
@@ -31,7 +33,13 @@ let router = new VueRouter({
           path: '/pay', component: Pay
         },
         {
-          path: '/receivemethod', component:Receivemethod
+          path: '/receivemethod', component: Receivemethod
+        },
+        {
+          path: '/address', component: Address
+        },
+        {
+          path: '/shops', component: Shops
         }
     ]
 });
