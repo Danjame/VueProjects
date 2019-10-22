@@ -1,14 +1,13 @@
 <style lang="less" scoped>
 .confirm-btn {
-    position: absolute;
     width: 264px;
-    height: 56px;
-    margin-left: 56px;
-    margin-bottom: 23px;
-    bottom: 23px;
-    background-color: #F1D500;
+    height: 54px;
+    margin-left: auto;
+    margin-right: auto;
+    margin-top: 300px;
+    background-color: #F1D548;
     text-align: center;
-    line-height: 56px;
+    line-height: 54px;
     font-size: 32px;
     border-radius: 28px;
 }

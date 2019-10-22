@@ -53,11 +53,8 @@ router.get('/detail', async (req, res) => {
     }
 
     const result = await Promise.all([
-        db.query('select * from good_price where good_id = ?', [id]),
         db.query('select * from good_img where good_id = ?', [id]),
         db.query('select * from goods_property where good_id = ?', [id]),
-        db.query('select * from payment_method where good_id = ?', [id]),
-        db.query('select * from goods_size where good_id = ?', [id])
     ]);
 
     res.json({
@@ -68,15 +65,30 @@ router.get('/detail', async (req, res) => {
         data: {
             info,
             result,
-            // price: result[0],
-            // imgs: result[1],
-            // property: result[2],
-            // payment: result[3],
-            // size: result[4]
         }
     })
 });
 
+router.get('/select', async (req, res) => {
+    const { id } = req.query;
+
+    const result = await Promise.all([
+        db.query('select * from goods_size where good_id = ?', [id]),
+        db.query('select * from good_price where good_id = ?', [id]),
+    ]);
+
+    res.json({
+        status: {
+            code: '200',
+            msg: 'ok'
+        },
+        data: {
+            result,
+        }
+    })
+});
+
+// db.query('select * from payment_method where good_id = ?', [id]),
 router.get('/pay', async (req, res) => {
     const { id } = req.query;
     const info = await db.query('select * from good where goods_status != 1 and good_id = ?', [id]);

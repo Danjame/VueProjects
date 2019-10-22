@@ -1,8 +1,4 @@
 <style lang="less" scoped>
-a {
-    text-decoration: none;
-}
-
 * {
     color: black;
 }
@@ -30,15 +26,14 @@ a {
 }
 
 .confirm-btn {
-    position: absolute;
     width: 264px;
-    height: 56px;
-    margin-left: 56px;
-    margin-bottom: 23px;
-    bottom: 23px;
-    background-color: #F1D500;
+    height: 54px;
+    margin-left: auto;
+    margin-right: auto;
+    margin-top: 300px;
+    background-color: #F1D548;
     text-align: center;
-    line-height: 56px;
+    line-height: 54px;
     font-size: 32px;
     border-radius: 28px;
 }
@@ -50,9 +45,9 @@ a {
         <div class="method" v-html = "content":class="{selected: itemIndex == index }" v-for = "(content, index) in datas" @click = "select(index)">{{content}}</div>
         <div class = "confirm-btn">
             <div v-if = "itemIndex == null">下一步</div>
-           <router-link v-if = "itemIndex == 0" exact :to="{path: '/address', query: {id: this.$route.query.id}}">下一步
+           <router-link v-if = "itemIndex == 0" tag="div" :to="{path: '/address', query: {id: this.$route.query.id}}">下一步
            </router-link>
-            <router-link v-if = "itemIndex == 1" exact :to="{path: '/shops', query: {id: this.$route.query.id}}">下一步
+            <router-link v-if = "itemIndex == 1" tag="div" :to="{path: '/shops', query: {id: this.$route.query.id}}">下一步
            </router-link>
         </div>
         
@@ -82,7 +77,7 @@ export default {
             .then(res => {
                 if (res.data.status.code === '200') {
                     console.log(res.data.data);
-                    // this.information = res.data.data;
+
                     return;
                 };
                 return;

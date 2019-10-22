@@ -7,11 +7,7 @@
                 </div>
                 <div class="goods-item-title">{{item.good_title}}</div>
                 <div class="goods-item-price">￥{{item.range}}</div>
-                <div class="goods-item-buybtn">
-                    <span>
-                        <router-link :to="{ path: '/detail', query:{id: item.good_id,}}" @click="handleClick(item.range)">立即购买</router-link>
-                    </span>
-                </div>
+                <router-link class="goods-item-buybtn" tag="div" :to="{ path: '/detail', query:{id: item.good_id, price_range:item.range}}">立即购买</router-link>
             </div>
         </div>
     </div>
@@ -50,7 +46,7 @@ const TimerUtils = (function() {
         }
     }
 })();
-import Bus from '../../src/bus.js'
+
 export default {
     name: 'slider',
     props: ['datas', 'params'],
@@ -110,9 +106,6 @@ export default {
         }
     },
     methods: {
-        handleClick: function(item) {
-            Bus.$emit('getData', item);
-        },
         slideNext: function() {
             if (this.slideIndex == this.itemCount - 1) return;
             this.slideIndex++;
@@ -163,7 +156,6 @@ export default {
     &-container {
         position: relative;
         overflow: hidden;
-
         width: 100%;
         height: auto;
     }
@@ -217,22 +209,15 @@ export default {
         }
 
         &-buybtn {
-            margin-top: 30px;
-
-            span {
-                display: inline-block;
-                border-radius: 28px;
-                width: 264px;
-                height: 54px;
-                line-height: 54px;
-                background: #F1D500;
-
-                a {
-                    font-size: 22px;
-                    color: #622D00;
-                    text-decoration: none;
-                }
-            }
+            width: 264px;
+            height: 54px;
+            margin-left: auto;
+            margin-right: auto;
+            margin-top: 100px;
+            border-radius: 28px;
+            line-height: 54px;
+            background: #F1D548;
+            font-size: 30px;
         }
     }
 }

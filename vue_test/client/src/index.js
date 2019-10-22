@@ -16,8 +16,6 @@ import Receivemethod from './receivemethod/index.vue';
 import Address from './address/index.vue';
 import Shops from './shops/index.vue';
 
-
-
 let router = new VueRouter({
     routes: [
         { 

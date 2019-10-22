@@ -12,7 +12,6 @@
 </template>
 <script>
 import Slider from '../../components/slider/index.vue';
-
 export default {
     components: {
         [Slider.name]: Slider

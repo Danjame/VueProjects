@@ -103,32 +103,30 @@ li {
     margin-top: 56px;
     margin-left: 56px;
     border-radius: 30px;
-    background-color: #F3DA00;
+    background-color: #F1D548;
     font-size: 25px;
     text-align: center;
     line-height: 56px;
 }
 
-a {
-    text-decoration: none;
-}
 </style>
 <template>
     <div class="detail-box">
         <div class="head">
-            <div class="goods-img"><img :src="goodImg.good_img"></div>
+            <div class="goods-img"><img :src="titleImg"></div>
             <div class="goods-info">
                 <div class="goods-title">{{goodInfo.good_title}}</div>
-                <div class="goods-price">
-                    <!-- ￥{{price_range.join('-')}} -->
+                <div class="goods-price">￥{{priceRange}}
+                    <span class="goods-status" v-if="goodInfo.goods_status === 1">未上架</span>
                     <span class="goods-status" v-if="goodInfo.goods_status === 2">预售</span>
+                    <span class="goods-status" v-if="goodInfo.goods_status === 3">售卖中</span>
                     <span class="goods-status notsales" v-if="goodInfo.goods_status === 4">下架</span>
                 </div>
             </div>
         </div>
         <div class="goods-size">
             <ul>
-                <li v-for="(item, index) in goods.property">
+                <li v-for="(item, index) in property">
                     <span class="goods-size-name">{{item.property_name}}</span>
                     <span class="goods-size-value">{{item.property_value}}</span>
                 </li>
@@ -136,12 +134,13 @@ a {
         </div>
         <div class="goods-desc">
             <ul>
-                <li v-for="item in size"><img :src="item.image" alt=""></li>
+                <li v-for="item in goodImg"><img :src="item.good_img" alt=""></li>
             </ul>
         </div>
+        <div>{{goodInfo.good_desc}}</div>
         <div class="btn-box">
             <div class="btn-purchase">
-                <router-link exact :to="{ path: '/select', query:{id: this.$route.query.id}}">
+                <router-link tag="div" :to="{ path: '/select', query:{id: this.$route.query.id}}">
                     立即购买
                 </router-link>
             </div>
@@ -149,24 +148,19 @@ a {
     </div>
 </template>
 <script>
-import Bus from '../../src/bus.js'
 export default {
     data() {
         return {
-            goods: {},
-            price: [],
             goodInfo: {},
             goodImg: {},
-            size: []
+            property: {},
+            titleImg: '',
+            priceRange: ''
         }
     },
-    // activated: {
-
-                   
-        
-    // },
-    mounted(){
-         this.axios
+    mounted() {
+        this.priceRange = this.$route.query.price_range;
+        this.axios
             .get('/api/goods/detail', {
                 params: {
                     id: this.$route.query.id
@@ -174,18 +168,13 @@ export default {
             })
             .then(res => {
                 if (res.data.status.code === '200') {
-                    console.log(res.data.data);
-                    this.goods = res.data.data;
-                    this.price = this.goods.price.map(function(price) {
-                        return price.good_price;
-                    });
-                    this.goodInfo = this.goods.info[0];
-                    this.goodImg = this.goods.imgs[1];
-                    this.size = this.goods.size;
+                    this.goodInfo = res.data.data.info[0];
+                    this.goodImg = res.data.data.result[0];
+                    this.titleImg = this.goodImg[0].good_img;
+                    this.property = res.data.data.result[1];
                     return;
                 }
                 alert(res.data.status.msg);
-                
             });
     }
 }
