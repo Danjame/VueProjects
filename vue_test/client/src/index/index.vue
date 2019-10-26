@@ -6,15 +6,15 @@
             <slider :datas="goods" :params="{minMoveDistance: 50, autoPlay: false}"></slider>
         </div>
         <div class="goods-box" v-if="!goods.length">
-            数据不存在
+            加载中。。。
         </div>
     </div>
 </template>
 <script>
-import Slider from '../../components/slider/index.vue';
+import Slider from './components/slider.vue';
 export default {
     components: {
-        [Slider.name]: Slider
+        Slider
     },
     data() {
         return {

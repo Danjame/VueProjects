@@ -1,3 +1,80 @@
+<style lang="less" scoped>
+.goods {
+    &-container {
+        position: relative;
+        overflow: hidden;
+        width: 100%;
+        height: auto;
+    }
+
+    &-wrap {
+        display: flex;
+        height: 100%;
+        flex-direction: row;
+        flex-wrap: nowrap;
+        transition: transform 0.3s ease-out;
+    }
+
+    &-item {
+        margin: 16px 8px;
+        min-width: 304px;
+        color: #333;
+        text-align: center;
+
+        &:first-child {
+            margin-left: 30px
+        }
+
+        &-pic {
+            width: 100%;
+            min-height: 376px;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+        }
+
+        img {
+            /* margin-bottom: 16px; */
+            border-radius: 10px;
+            max-width: 100%;
+            max-height: 330px;
+        }
+
+        &.active {
+            width: 304px;
+        }
+
+        &.active img {
+            max-width: 304px;
+            max-height: 376px;
+        }
+
+        &-title {
+            height: 100px;
+            margin-top: 16px;
+            font-size: 24px;
+        }
+
+        &-price {
+            margin-top: 16px;
+            font-size: 26px;
+        }
+
+        &-buybtn {
+            width: 264px;
+            height: 56px;
+            margin-left: auto;
+            margin-right: auto;
+            margin-top: 30px;
+            border-radius: 28px;
+            line-height: 54px;
+            background: #f1d500;
+            font-size: 22px;
+            color: #622d00;
+        }
+    }
+}
+</style>
 <template>
     <div class="goods-container" @touchstart="swipeStart" @touchmove="swipeMove" @touchend="swipeEnd">
         <div class="goods-wrap" :style="transformObj">
@@ -151,74 +228,3 @@ export default {
     }
 }
 </script>
-<style lang="less" scoped>
-.goods {
-    &-container {
-        position: relative;
-        overflow: hidden;
-        width: 100%;
-        height: auto;
-    }
-
-    &-wrap {
-        display: flex;
-        height: 100%;
-        flex-direction: row;
-        flex-wrap: nowrap;
-        transition: transform 0.3s ease-out;
-    }
-
-    &-item {
-        margin: 16px 8px;
-        min-width: 304px;
-        color: #333;
-        text-align: center;
-
-        &:first-child {
-            margin-left: 30px
-        }
-
-        &-pic {
-            width: 100%;
-        }
-
-        img {
-            margin-bottom: 16px;
-            border-radius: 10px;
-            max-width: 100%;
-            max-height: 330px;
-        }
-
-        &.active {
-            width: 304px;
-        }
-
-        &.active img {
-            max-width: 304px;
-            max-height: 376px;
-        }
-
-        &-title {
-            height: 100px;
-            margin-bottom: 16px;
-            font-size: 24px;
-        }
-
-        &-price {
-            font-size: 26px;
-        }
-
-        &-buybtn {
-            width: 264px;
-            height: 54px;
-            margin-left: auto;
-            margin-right: auto;
-            margin-top: 100px;
-            border-radius: 28px;
-            line-height: 54px;
-            background: #F1D548;
-            font-size: 30px;
-        }
-    }
-}
-</style>

@@ -76,7 +76,7 @@ ul {
 }
 
 .active {
-    border: 1px solid #F1D548;
+    border: 1px solid blue;
 }
 </style>
 <template>
@@ -103,7 +103,7 @@ ul {
             </ul>
         </div>
         <div class="confirm-btn">
-            <router-link tag="div" :to="{ path: '/receivemethod', query:{id: this.$route.query.id}}">
+            <router-link tag="div" :to="{ path: '/receive', query:{id: this.$route.query.id}}">
                 ￥{{this.selected.total}} 下一步
             </router-link>
         </div>

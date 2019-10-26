@@ -9,12 +9,12 @@ Vue.use(VueRouter);
 
 import App from './app.vue';
 import Index from './index/index.vue';
-import Detail from './detail/index.vue';
-import Select from './select/index.vue';
-import Pay from './pay/index.vue';
-import Receivemethod from './receivemethod/index.vue';
-import Address from './address/index.vue';
-import Shops from './shops/index.vue';
+import Detail from './detail/detail.vue';
+import Select from './select/select.vue';
+import Pay from './pay/pay.vue';
+import Receive from './receive/receive.vue';
+import Address from './address/address.vue';
+import Shops from './shops/shops.vue';
 
 let router = new VueRouter({
     routes: [
@@ -31,7 +31,7 @@ let router = new VueRouter({
           path: '/pay', component: Pay
         },
         {
-          path: '/receivemethod', component: Receivemethod
+          path: '/receive', component: Receive
         },
         {
           path: '/address', component: Address
