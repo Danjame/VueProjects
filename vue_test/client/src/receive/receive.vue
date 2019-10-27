@@ -4,64 +4,91 @@
 }
 
 .title {
-    height: 110px;
-    line-height: 110px;
-    font-size: 30px
+    height: 40px;
+    margin-top: 32px;
+    margin-left: 16px;
+    margin-bottom: 32px;
+    line-height: 40px;
+    font-size: 28px
 }
 
 .method {
-    box-sizing: border-box;
-    height: 150px;
-    margin: auto 3%;
-    margin-bottom: 20px;
-    padding: 5px;
-    border-radius: 10px;
-    background-color: white;
+    width: 344px;
+    margin-top: 32px;
+    margin-left: auto;
+    margin-right: auto;
+
+    &-wrapper {
+        box-sizing: border-box;
+        width: 100%;
+        height: 136px;
+        margin-bottom: 16px;
+        padding: 5px 24px 10px 24px;
+        border-radius: 12px;
+        background-color: white;
+        font-size: 20px;
+
+        &-name {
+            font-size: 22px;
+        }
+
+        &-desc {
+            font-size: 20px;
+        }
+    }
+}
+
+.btn {
+    width: 264px;
+    height: 56px;
+    margin-left: auto;
+    margin-right: auto;
+    margin-top: 197px;
+    background-color: #F1D500;
+    text-align: center;
+    line-height: 56px;
     font-size: 22px;
+    border-radius: 28px;
 }
 
 .selected {
     background-color: #f1d548;
     color: #3e0707;
 }
-
-.confirm-btn {
-    width: 264px;
-    height: 54px;
-    margin-left: auto;
-    margin-right: auto;
-    margin-top: 300px;
-    background-color: #F1D548;
-    text-align: center;
-    line-height: 54px;
-    font-size: 32px;
-    border-radius: 28px;
-}
-
 </style>
 <template>
     <div>
         <div class="title">选择收货方式</div>
-        <div class="method" v-html = "content":class="{selected: itemIndex == index }" v-for = "(content, index) in datas" @click = "select(index)">{{content}}</div>
-        <div class = "confirm-btn">
-            <div v-if = "itemIndex == null">下一步</div>
-           <router-link v-if = "itemIndex == 0" tag="div" :to="{path: '/address', query: {id: this.$route.query.id}}">下一步
-           </router-link>
-            <router-link v-if = "itemIndex == 1" tag="div" :to="{path: '/shops', query: {id: this.$route.query.id}}">下一步
-           </router-link>
+        <div class="method">
+            <div class="method-wrapper" :class="{selected: itemIndex == index }" v-for="(content, index) in delivery" @click="select(index)">
+                <p class="method-wrapper-name">{{content.name}}</p>
+                <p class="method-wrapper-desc">{{content.desc}}</p>
+            </div>
         </div>
-        
+        <div class="btn">
+            <div v-if="itemIndex == null">下一步</div>
+            <router-link v-if="itemIndex == 0" tag="div" :to="{path: '/address', query: {id: this.$route.query.id}}">下一步
+            </router-link>
+            <router-link v-if="itemIndex == 1" tag="div" :to="{path: '/shops', query: {id: this.$route.query.id}}">下一步
+            </router-link>
+        </div>
     </div>
 </template>
 <script>
 export default {
     data() {
         return {
-        	datas: ["<p>送货上门</p><p>10公里以内的用户门店有货24小时内送达</p>", "<p>门店自提</p><p>您可以到附近门店自提</p>"],
-        	itemIndex: null,
-            information:{}
-        	}
-        },
+            delivery: [{
+                name: '送货上门',
+                desc: '10公里以内的用户门店有货24小时内送达'
+            }, {
+                name: '门店自提',
+                desc: '您可以到附近门店自提'
+            }],
+            itemIndex: null,
+            information: {}
+        }
+    },
     methods: {
         select(index) {
             this.itemIndex = index;

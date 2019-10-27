@@ -6,107 +6,232 @@
 
 li {
     list-style: none;
-    float: left;
     font-size: 16px;
 }
 
-ul {
-    overflow: hidden;
-    margin-top: 15px;
-}
-
-.color-box,
-.size-box,
-.quantity-box {
-    width: 90%;
-    height: auto;
-    margin: 0 auto;
-    margin-top: 35px;
-}
-
-.item-color img {
-    width: 100%;
-}
-
-.item-color,
-.item-size,
-.item-quantity {
-    display: flex;
-    justify-content: space-around;
-}
-
-.item-color>li> {
-    width: 15%;
-    display: inline;
-}
-
 .item-title {
-    font-size: 30px;
-}
-
-.size-box li {
-    width: 15%;
-    height: 40px;
-    background-color: white;
-    border-radius: 10px;
-    text-align: center;
+    font-size: 28px;
     line-height: 40px;
 }
 
-.quantity-box li {
-    width: 10%;
-    height: 40px;
-    background-color: white;
-    border-radius: 10px;
-    text-align: center;
-    line-height: 40px;
+.color-wrapper {
+    margin-left: 16px;
+    margin-top: 32px;
+
+    & .item-color {
+        display: flex;
+        flex-wrap: wrap;
+        width: 100%;
+        margin-top: 16px;
+
+        & li {
+            width: 102px;
+            margin-right: 17px;
+            margin-bottom: 16px;
+            text-align: center;
+
+            & img {
+                width: 100%;
+                border-radius: 10px;
+            }
+        }
+
+        &-text {
+            font-size: 22px;
+            line-height: 30px;
+        }
+    }
 }
 
-.confirm-btn {
+.size-wrapper {
+    margin-left: 16px;
+    margin-top: 32px;
+
+    & .item-size {
+        display: flex;
+        flex-wrap: wrap;
+        width: 100%;
+        margin-top: 16px;
+
+        & li {
+            width: 100px;
+            height: 56px;
+            margin-right: 16px;
+            margin-bottom: 16px;
+            border-radius: 8px;
+            background: white;
+            line-height: 56px;
+            text-align: center;
+            font-size: 22px;
+        }
+    }
+}
+
+.quantity-wrapper {
+    margin-left: 16px;
+    margin-top: 32px;
+
+    & ul {
+        display: inline-block;
+        width: 100%;
+        margin-top: 16px;
+        overflow: hidden;
+
+        & li {
+            float: left;
+            width: 56px;
+            height: 56px;
+            margin-right: 15px;
+            margin-bottom: 16px;
+            border-radius: 8px;
+            background: white;
+            line-height: 56px;
+            text-align: center;
+            font-size: 22px;
+        }
+    }
+
+    & .itemQuantity {
+        height: 56px;
+    }
+
+    & .item-extend {
+        float: right;
+        box-sizing: border-box;
+        width: 128px;
+        height: 56px;
+        margin-right: 16px;
+        border-radius: 8px;
+        background: white;
+        overflow: auto;
+        line-height: 56px;
+        font-size: 22px;
+        padding-left: 22px;
+
+        &-arrow {
+            display: inline-block;
+            margin-left: 15px;
+            position: absolute;
+            margin-top: 24px;
+
+            &-top {
+                width: 0;
+                height: 0;
+                border: 12px solid transparent;
+                border-top: 12px solid black;
+            }
+
+            &-bottom {
+                width: 0;
+                height: 0;
+                border: 12px solid transparent;
+                border-top: 12px solid white;
+                margin-top: -27px;
+            }
+        }
+    }
+
+    & .item-rollup {
+        display: inline-block;
+        box-sizing: border-box;
+        width: 128px;
+        height: 56px;
+        margin-right: 16px;
+        border-radius: 8px;
+        background: white;
+        line-height: 56px;
+        font-size: 22px;
+        padding-left: 22px;
+
+        &-arrow {
+            display: inline-block;
+            margin-left: 15px;
+            position: absolute;
+            margin-top: 10px;
+
+            &-top {
+                width: 0;
+                height: 0;
+                border: 12px solid transparent;
+                border-bottom: 12px solid black;
+            }
+
+            &-bottom {
+                width: 0;
+                height: 0;
+                border: 12px solid transparent;
+                border-bottom: 12px solid white;
+                margin-top: -21px;
+            }
+        }
+    }
+}
+
+.btn {
     width: 264px;
-    height: 54px;
+    height: 56px;
     margin-left: auto;
     margin-right: auto;
-    margin-top: 300px;
-    background-color: #F1D548;
-    text-align: center;
-    line-height: 54px;
-    font-size: 32px;
+    margin-top: 54px;
+    background: #F1D500;
+    line-height: 56px;
+    font-size: 22px;
     border-radius: 28px;
+
+    &-price {
+        float: left;
+        margin-left: 40px;
+    }
+
+    &-next {
+        float: right;
+        margin-right: 40px;
+    }
 }
 
-.active {
-    border: 1px solid blue;
+.actived {
+    background: #F1D500 !important
 }
 </style>
 <template>
     <div>
-        <div class="color-box">
+        <div class="color-wrapper">
             <div class="item-title">选择颜色</div>
             <ul class="item-color">
-                <li v-for="(item, index) in result" :class="{active:index == colorIndex}" @click="selectColor(item, index)">
+                <li v-for="(item, index) in result" :class="{actived:index == colorIndex}" @click="selectColor(item, index)">
                     <div><img :src="item.image" alt=""></div>
-                    <div>{{item.color}}</div>
+                    <div class="item-color-text">{{item.color}}</div>
                 </li>
             </ul>
         </div>
-        <div class="size-box">
+        <div class="size-wrapper">
             <div class="item-title">选择尺码/版本</div>
             <ul class="item-size">
-                <li v-for="(item, index) in result" :class="{active:index == sizeIndex}" @click="selectSize(item, index)">{{item.size}}</li>
+                <li v-for="(item, index) in result" :class="{actived:index == sizeIndex}" @click="selectSize(item, index)">{{item.size}}</li>
             </ul>
         </div>
-        <div class="quantity-box">
+        <div class="quantity-wrapper">
             <div class="item-title">选择数量</div>
-            <ul class="item-quantity">
-                <li v-for="(item, index) in quantity" :class="{active: index == numIndex}" @click="selectNum(item, index)">{{item}}</li>
+            <ul :class="{itemQuantity: extend}">
+                <div class="item-extend" v-show="extend == true" @click="extendMore">展开
+                    <span class="item-extend-arrow">
+                        <div class="item-extend-arrow-top"></div>
+                        <div class="item-extend-arrow-bottom"></div>
+                    </span>
+                </div>
+                <li v-for="(item, index) in quantity" :class="{actived: index == numIndex}" @click="selectNum(item, index)">{{item}}</li>
+                <span class="item-rollup" v-show="extend == false" @click="extendMore">收起
+                    <span class="item-rollup-arrow">
+                        <div class="item-rollup-arrow-top"></div>
+                        <div class="item-rollup-arrow-bottom"></div>
+                    </span>
+                </span>
             </ul>
         </div>
-        <div class="confirm-btn">
-            <router-link tag="div" :to="{ path: '/receive', query:{id: this.$route.query.id}}">
-                ￥{{this.selected.total}} 下一步
-            </router-link>
-        </div>
+        <router-link class="btn" tag="div" :to="{ path: '/receive', query:{id: this.$route.query.id}}">
+            <span class="btn-price">￥{{this.selected.total}}</span>
+            <span class="btn-next">下一步</span>
+        </router-link>
     </div>
 </template>
 <script>
@@ -114,11 +239,12 @@ export default {
     data() {
         return {
             result: {},
-            quantity: 5,
+            quantity: 8,
             colorIndex: null,
             sizeIndex: null,
             numIndex: null,
             price: {},
+            extend: true,
             selected: {
                 color: null,
                 size: null,
@@ -144,7 +270,13 @@ export default {
             this.selected.quantity = item;
             this.selected.total = this.selected.unit * this.selected.quantity;
         },
-
+        extendMore() {
+            if (this.extend == true) {
+                this.extend = false
+            } else {
+                this.extend = true
+            }
+        }
     },
     mounted() {
         this.axios
@@ -162,7 +294,7 @@ export default {
                     return;
                 }
                 alert(res.data.status.msg);
-            });
-    },
+            })
+    }
 }
 </script>

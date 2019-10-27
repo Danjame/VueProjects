@@ -88,7 +88,6 @@ router.get('/select', async (req, res) => {
     })
 });
 
-// db.query('select * from payment_method where good_id = ?', [id]),
 router.get('/pay', async (req, res) => {
     const { id } = req.query;
     const info = await db.query('select * from good where goods_status != 1 and good_id = ?', [id]);

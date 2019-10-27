@@ -22,7 +22,7 @@
         text-align: center;
 
         &:first-child {
-            margin-left: 30px
+            margin-left: 36px;
         }
 
         &-pic {
@@ -31,20 +31,20 @@
             display: flex;
             flex-direction: column;
             justify-content: center;
+            margin-bottom: 16px;
         }
 
         img {
-            /* margin-bottom: 16px; */
-            border-radius: 10px;
             max-width: 100%;
             max-height: 330px;
+            border-radius: 10px;  
         }
 
-        &.active {
+        & .active {
             width: 304px;
         }
 
-        &.active img {
+        & .active img {
             max-width: 304px;
             max-height: 376px;
         }
@@ -67,7 +67,7 @@
             margin-right: auto;
             margin-top: 30px;
             border-radius: 28px;
-            line-height: 54px;
+            line-height: 56px;
             background: #f1d500;
             font-size: 22px;
             color: #622d00;
