@@ -9,49 +9,54 @@
     bottom: 0;
     background-color: blue;
 } */
-.address-wrapper{
+.address-wrapper {
     height: 400px;
 }
-.confirm-btn {
+
+.btn {
     width: 264px;
-    height: 54px;
+    height: 56px;
     margin-left: auto;
     margin-right: auto;
     margin-top: 300px;
-    background-color: #F1D548;
+    background-color: #F1D000;
     text-align: center;
-    line-height: 54px;
-    font-size: 32px;
+    line-height: 56px;
+    font-size: 22px;
     border-radius: 28px;
 }
-
 </style>
 <template>
     <div>
-        <add>
-            
-        </add>
         <div class="address-wrapper">
-
+            当前还没有收货地址
         </div>
-        <div class="confirm-btn">
+        <new-address @close="handleAddress" v-show="newAdd"></new-address>
+        <div class="btn" @click="handleAddress">
             添加新地址
         </div>
     </div>
 </template>
 <script>
-import Add from './components/add.vue';
+import NewAddress from './components/newAddress.vue';
 export default {
-    components:{
-        Add
+    components: {
+        NewAddress
     },
     data() {
         return {
-            
+            newAdd: false,
         }
     },
     methods: {
-
+        handleAddress() {
+            if(this.newAdd==false){
+                this.newAdd = true
+            }else{
+                this.newAdd = false
+            }
+            
+        },
     },
     // mounted() {
     //     this.axios

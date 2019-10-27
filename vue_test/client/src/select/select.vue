@@ -213,7 +213,7 @@ li {
         <div class="quantity-wrapper">
             <div class="item-title">选择数量</div>
             <ul :class="{itemQuantity: extend}">
-                <div class="item-extend" v-show="extend == true" @click="extendMore">展开
+                <div class="item-extend" v-show="extend" @click="extendMore">展开
                     <span class="item-extend-arrow">
                         <div class="item-extend-arrow-top"></div>
                         <div class="item-extend-arrow-bottom"></div>
