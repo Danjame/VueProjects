@@ -23,6 +23,7 @@
         margin-right: 16px;
 
         & input{
+            width: 100%;
             margin-top: 33px;
             font-size: 22px;
             color: grey;
@@ -47,19 +48,20 @@
     font-size: 22px;
     border-radius: 28px;
 }
+
 </style>
 <template>
     <div class="container">
         <div class="title">填写地址</div>
         <div class="input-wrapper">
-            <input type="text" v-model="name" @focus="focusName" @blur = "blurName">
+            <input type="text" v-model="name" @focus="focusName" @blur="blurName">
             <hr />
-            <input type="text" v-model="tele" @focus="focusTele" @blur = "blurTele">
+            <input type="text" v-model="tele" @focus="focusTele" @blur="blurTele">
             <hr />
-            <input type="text" v-model="local" @focus="focusLocal" @blur = "blurLocal">
+            <input type="text" v-model="local" @focus="focusLocal" @blur="blurLocal">
             <hr />
         </div>
-        <div class="btn" @click="handleConfirm">
+        <div class="btn" @click="handleConfirm(name,tele,local)">
             确认添加
         </div>
     </div>
@@ -75,36 +77,52 @@ export default {
         }
     },
     methods: {
-        handleConfirm() {
-            this.$emit("close");
+        handleConfirm(arg1,arg2,arg3) {
+            if (this.name == "姓名" || this.tele == "手机号码" || this.local == "详细地址") {
+                alert("请填写完整信息")
+            }else{
+                this.$emit("close", arg1,arg2,arg3);
+            }
         },
         focusName() {
-            this.name = ""
+            if (this.name == "姓名") {
+                this.name = ""
+            } else {
+                return
+            }
         },
         focusTele() {
-            this.tele = ""
+            if (this.tele == "手机号码") {
+                this.tele = ""
+            } else {
+                return
+            }
         },
         focusLocal() {
-            this.local = ""
+            if (this.local == "详细地址") {
+                this.local = ""
+            } else {
+                return
+            }
         },
         blurName() {
-            if(this.name == ""){
-                this.name ="姓名"
-            }else{
+            if (this.name == "") {
+                this.name = "姓名"
+            } else {
                 return
             }
         },
         blurTele() {
-            if(this.tele == ""){
-                this.tele ="手机号码"
-            }else{
+            if (this.tele == "") {
+                this.tele = "手机号码"
+            } else {
                 return
             }
         },
         blurLocal() {
-            if(this.local == ""){
-                this.local ="详细地址"
-            }else{
+            if (this.local == "") {
+                this.local = "详细地址"
+            } else {
                 return
             }
         },
