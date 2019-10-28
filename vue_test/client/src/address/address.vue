@@ -32,6 +32,26 @@
         background: white;
         padding: 24px;
 
+        &-edit{
+            display: inline-block;
+            float: right;
+            width: 50px;
+            height: 50px;
+            line-height: 50px;
+            background: yellow;
+            text-align: center;
+            z-index: 5;
+        }
+        &-delete{
+            display: inline-block;
+            float: right;
+            width: 50px;
+            height: 50px;
+            line-height: 50px;
+            background: yellow;
+            text-align: center;
+            z-index: 5;
+        }
         &-name {
             line-height: 30px;
             font-size: 22px;
@@ -74,15 +94,15 @@
         <div class="address-title" v-else >选择地址</div>
         <div class="address-wrapper">
             <div class="address-item" v-for="(item, index) in addresses" :class="{actived: selected}" @click="select">
+                <span class="address-item-delete" @click="deleteCurrentItem(item, index)">删除</span>
+                <span class="address-item-edit" @click="editCurrentItem(item, index)">修改</span>
                 <p class="address-item-name">{{item.name}}</p>
                 <p class="address-item-tele">{{item.tele}}</p>
                 <p class="address-item-local">{{item.region}} {{item.local}}</p>
             </div>
         </div>
         <new-address :newAdd = "newAdd" @close="closeAddress" v-show="newAdd"></new-address>
-        <edit-address>
-            
-        </edit-address>
+        <edit-address :editItem="editItem" @edit="editAddress" v-show="editAdd"></edit-address>
         <div class="btn" @click="handleAddress">
             添加新地址
         </div>
@@ -99,11 +119,22 @@ export default {
     data() {
         return {
             newAdd: false,
+            editAdd: false,
             selected: false,
             addresses: [],
+            editItem: null,
         }
     },
     methods: {
+        deleteCurrentItem(item, index){
+
+        },
+        editCurrentItem(item, index){
+            this.editItem = item;
+            this.editItem.index = index;
+            console.log(this.editItem);
+            this.editAdd = true;
+        },
         select() {
             this.selected = true;
         },
@@ -114,6 +145,11 @@ export default {
             this.newAdd = false;
             const {name, tele, region, local} = {name:arg1, tele:arg2, region:arg3, local: arg4};
             this.addresses.push({name, tele, region, local});
+        },
+        editAddress(arg1) {
+            this.editAdd = false;
+            this.addresses.splice(arg1.index, 1, arg1);
+            console.log(this.addresses)
         },
     },
 }
