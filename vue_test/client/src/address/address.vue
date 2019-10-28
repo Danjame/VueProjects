@@ -76,10 +76,13 @@
             <div class="address-item" v-for="(item, index) in addresses" :class="{actived: selected}" @click="select">
                 <p class="address-item-name">{{item.name}}</p>
                 <p class="address-item-tele">{{item.tele}}</p>
-                <p class="address-item-local">{{item.local}}</p>
+                <p class="address-item-local">{{item.region}} {{item.local}}</p>
             </div>
         </div>
-        <new-address @close="closeAddress" v-show="newAdd"></new-address>
+        <new-address :newAdd = "newAdd" @close="closeAddress" v-show="newAdd"></new-address>
+        <edit-address>
+            
+        </edit-address>
         <div class="btn" @click="handleAddress">
             添加新地址
         </div>
@@ -87,9 +90,11 @@
 </template>
 <script>
 import NewAddress from './components/newAddress.vue';
+import EditAddress from './components/editAddress.vue';
 export default {
     components: {
-        NewAddress
+        NewAddress,
+        EditAddress
     },
     data() {
         return {
@@ -105,32 +110,11 @@ export default {
         handleAddress() {
             this.newAdd = true
         },
-        closeAddress(arg1, arg2, arg3) {
+        closeAddress(arg1, arg2, arg3, arg4) {
             this.newAdd = false;
-            let obj = {};
-            obj.name = arg1;
-            obj.tele = arg2;
-            obj.local = arg3;
-            this.addresses.push(obj);
-            console.log(this.addresses);
-            console.log(this.addresses[0]);
+            const {name, tele, region, local} = {name:arg1, tele:arg2, region:arg3, local: arg4};
+            this.addresses.push({name, tele, region, local});
         },
     },
-    // mounted() {
-    //     this.axios
-    //         .get('/api/goods/address', {
-    //             params: {
-    //                 id: this.$route.query.id,
-    //             },
-    //         })
-    //         .then(res => {
-    //             if (res.data.status.code === '200') {
-    //                 this.data = res.data.data;
-    //                 console.log(this.data);
-    //                 return;
-    //             }
-    //             alert(res.data.status.msg);
-    //         })
-    // }
 }
 </script>
