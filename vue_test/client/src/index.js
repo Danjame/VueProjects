@@ -3,7 +3,7 @@ import VueRouter from 'vue-router'
 
 import axios from 'axios'
 import VueAxios from 'vue-axios'
- 
+
 Vue.use(VueAxios, axios)
 Vue.use(VueRouter);
 
@@ -17,33 +17,40 @@ import Address from './address/address.vue';
 import Shops from './shops/shops.vue';
 
 let router = new VueRouter({
-    routes: [
-        { 
-          path: '/', component: Index
+    routes: [{
+            path: '/',
+            component: Index
         },
         {
-          path: '/detail', component: Detail
+            path: '/detail',
+            component: Detail
         },
         {
-          path: '/select', component: Select
+            path: '/select',
+            component: Select
         },
         {
-          path: '/pay', component: Pay
+            path: '/receive',
+            component: Receive
         },
         {
-          path: '/receive', component: Receive
+            path: '/address',
+            component: Address
         },
         {
-          path: '/address', component: Address
+            path: '/pay',
+            component: Pay
         },
+
         {
-          path: '/shops', component: Shops
+            path: '/shops',
+            component: Shops
         }
     ]
 });
 
 new Vue({
-  el: '#app',
-  router,
-  render: h => h(App),
+    el: '#app',
+    router,
+    render: h => h(App),
 });

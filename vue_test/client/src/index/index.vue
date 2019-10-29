@@ -1,7 +1,7 @@
 <style lang="less" scoped>
 </style>
 <template>
-    <div>
+    <div class="container">
         <div class="goods-box" v-if="goods.length">
             <slider :datas="goods" :params="{minMoveDistance: 50, autoPlay: false}"></slider>
         </div>

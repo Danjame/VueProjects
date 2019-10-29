@@ -16,6 +16,14 @@
         margin-left: 16px;
         font-size: 28px;
     }
+    & .backBtn{
+        float: right;
+        margin-top: -33px;
+        margin-right: 16px;
+        border-radius: 6px;
+        background: #F1D000;
+        font-size: 22px;
+    }
 
     & .input-wrapper{
         margin-top: 29px;
@@ -99,6 +107,7 @@
 <template>
     <div class="container">
         <div class="title">填写地址</div>
+        <div class="backBtn" @click="handleBack">返回</div>
         <div class="input-wrapper">
             <input type="text" v-model="name" @focus="focusName" @blur="blurName">
             <hr />
@@ -138,7 +147,7 @@
             <hr />
         </div>
         <div class="btn" @click="handleConfirm(name,tele,regionText,local)">
-            确认添加
+            保存
         </div>
     </div>
 </template>
@@ -318,6 +327,9 @@ export default {
         }
     },
     methods: {
+        handleBack(){
+            this.$emit("back")
+        },
         showSelector() {
             this.regionSelector = true;
         },

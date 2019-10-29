@@ -150,11 +150,11 @@ export default {
     },
     data() {
         return {
-            name: editItem.name,
-            tele: editItem.tele,
-            local: editItem.local,
-            regionText: editItem.region,
-            index: editItem.index,
+            name: '姓名',
+            tele: '手机号码',
+            local: '详细地址',
+            regionText: '区域',
+            index: '',
             regionSelector: false,
             province: null,
             city: null,
@@ -385,7 +385,8 @@ export default {
             this.name = this.editItem.name;
             this.tele = this.editItem.tele;
             this.local = this.editItem.local;
-            this.regionText = this.editItem.region
+            this.regionText = this.editItem.region;
+            this.index = this.editItem.index;
         },
         province: function() {
             this.cities = [];

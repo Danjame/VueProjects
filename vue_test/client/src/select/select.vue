@@ -1,4 +1,4 @@
-<style lang="less" scoped>
+div<style lang="less" scoped>
 * {
     padding: 0;
     margin: 0;
@@ -68,6 +68,7 @@ li {
 }
 
 .quantity-wrapper {
+    min-height: 308px;
     margin-left: 16px;
     margin-top: 32px;
 
@@ -172,8 +173,7 @@ li {
     height: 56px;
     margin-left: auto;
     margin-right: auto;
-    margin-top: 54px;
-    background: #F1D500;
+    background: white;
     line-height: 56px;
     font-size: 22px;
     border-radius: 28px;
@@ -189,7 +189,11 @@ li {
     }
 }
 
-.actived {
+.activated {
+    background: #F1D500 !important
+}
+
+.colorFul {
     background: #F1D500 !important
 }
 </style>
@@ -198,7 +202,7 @@ li {
         <div class="color-wrapper">
             <div class="item-title">选择颜色</div>
             <ul class="item-color">
-                <li v-for="(item, index) in result" :class="{actived:index == colorIndex}" @click="selectColor(item, index)">
+                <li v-for="(item, index) in result" :class="{activated:index == colorIndex}" @click="selectColor(item, index)">
                     <div><img :src="item.image" alt=""></div>
                     <div class="item-color-text">{{item.color}}</div>
                 </li>
@@ -207,7 +211,7 @@ li {
         <div class="size-wrapper">
             <div class="item-title">选择尺码/版本</div>
             <ul class="item-size">
-                <li v-for="(item, index) in result" :class="{actived:index == sizeIndex}" @click="selectSize(item, index)">{{item.size}}</li>
+                <li v-for="(item, index) in result" :class="{activated:index == sizeIndex}" @click="selectSize(item, index)">{{item.size}}</li>
             </ul>
         </div>
         <div class="quantity-wrapper">
@@ -219,7 +223,7 @@ li {
                         <div class="item-extend-arrow-bottom"></div>
                     </span>
                 </div>
-                <li v-for="(item, index) in quantity" :class="{actived: index == numIndex}" @click="selectNum(item, index)">{{item}}</li>
+                <li v-for="(item, index) in quantity" :class="{activated: index == numIndex}" @click="selectNum(item, index)">{{item}}</li>
                 <span class="item-rollup" v-show="extend == false" @click="extendMore">收起
                     <span class="item-rollup-arrow">
                         <div class="item-rollup-arrow-top"></div>
@@ -228,10 +232,10 @@ li {
                 </span>
             </ul>
         </div>
-        <router-link class="btn" tag="div" :to="{ path: '/receive', query:{id: this.$route.query.id}}">
+        <div class="btn" :class="{colorFul: isColorful}" @click="next">
             <span class="btn-price">￥{{this.selected.total}}</span>
             <span class="btn-next">下一步</span>
-        </router-link>
+        </div>
     </div>
 </template>
 <script>
@@ -251,7 +255,8 @@ export default {
                 quantity: null,
                 unit: null,
                 total: null,
-            }
+            },
+            isColorful: false,
         }
     },
     methods: {
@@ -275,6 +280,27 @@ export default {
                 this.extend = false
             } else {
                 this.extend = true
+            }
+        },
+        next() {
+            if (this.selected.total == null || this.selected.total == 0) {
+                return;
+            } else {
+                this.$router.push({
+                    path: '/receive',
+                    query: {
+                        id: this.$route.query.id
+                    }
+                })
+            }
+        }
+    },
+    watch: {
+        'selected.total': function() {
+            if (this.selected.total == null || this.selected.total == 0) {
+                return;
+            } else {
+                this.isColorful = true;
             }
         }
     },

@@ -108,22 +108,19 @@ li {
 }
 
 .btn {
-    height: 130px;
-
-    &-purchase {
-        width: 264px;
-        height: 56px;
-        margin-top: 56px;
-        margin-left: auto;
-        margin-right: auto;
-        border-radius: 28px;
-        background-color: #F1D500;
-        font-size: 22px;
-        text-align: center;
-        line-height: 56px;
-    }
+    width: 264px;
+    height: 56px;
+    margin: 0 auto;
+    margin-top: 50px;
+    margin-left: auto;
+    margin-right: auto;
+    margin-bottom: 16px;
+    border-radius: 28px;
+    background-color: #F1D500;
+    font-size: 22px;
+    text-align: center;
+    line-height: 56px;
 }
-
 </style>
 <template>
     <div class="detail-box">
@@ -155,13 +152,9 @@ li {
             </div>
             <div class="desc-text">{{goodInfo.good_desc}}</div>
         </div>
-        <div class="btn">
-            <div class="btn-purchase">
-                <router-link tag="div" :to="{ path: '/select', query:{id: this.$route.query.id}}">
-                    立即购买
-                </router-link>
-            </div>
-        </div>
+        <router-link class="btn" tag="div" :to="{ path: '/select', query:{id: this.$route.query.id}}">
+            立即购买
+        </router-link>
     </div>
 </template>
 <script>

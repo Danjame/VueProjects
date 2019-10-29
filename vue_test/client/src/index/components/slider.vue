@@ -60,12 +60,12 @@
             font-size: 26px;
         }
 
-        &-buybtn {
+        &-btn {
             width: 264px;
             height: 56px;
             margin-left: auto;
             margin-right: auto;
-            margin-top: 30px;
+            margin-top: 33px;
             border-radius: 28px;
             line-height: 56px;
             background: #f1d500;
@@ -84,7 +84,7 @@
                 </div>
                 <div class="goods-item-title">{{item.good_title}}</div>
                 <div class="goods-item-price">￥{{item.range}}</div>
-                <router-link class="goods-item-buybtn" tag="div" :to="{ path: '/detail', query:{id: item.good_id, price_range:item.range}}">立即购买</router-link>
+                <router-link class="goods-item-btn" tag="div" :to="{ path: '/detail', query:{id: item.good_id, price_range:item.range}}">立即购买</router-link>
             </div>
         </div>
     </div>

@@ -4,7 +4,7 @@
     margin: 0;
 }
 
-.isEmpty{
+.isEmpty {
     width: 264px;
     margin: 0 auto;
     margin-top: 325px;
@@ -32,26 +32,31 @@
         background: white;
         padding: 24px;
 
-        &-edit{
+        &-edit {
             display: inline-block;
             float: right;
             width: 50px;
             height: 50px;
+            margin-top: -9px;
+            margin-right: 30px;
             line-height: 50px;
-            background: yellow;
+            color: #0C70E4;
+            font-size: 20px;
             text-align: center;
-            z-index: 5;
         }
-        &-delete{
+
+        &-delete {
             display: inline-block;
             float: right;
             width: 50px;
             height: 50px;
+            margin-top: -9px;
             line-height: 50px;
-            background: yellow;
+            color: #DD5045;
+            font-size: 20px;
             text-align: center;
-            z-index: 5;
         }
+
         &-name {
             line-height: 30px;
             font-size: 22px;
@@ -76,12 +81,23 @@
     height: 56px;
     margin-left: auto;
     margin-right: auto;
-    margin-top: 35px;
+    margin-top: 20px;
     background-color: #F1D000;
     text-align: center;
     line-height: 56px;
     font-size: 22px;
     border-radius: 28px;
+}
+
+.plusBtn {
+    width: 150px;
+    height: 40px;
+    margin-top: 5px;
+    margin-left: auto;
+    margin-right: auto;
+    text-align: center;
+    line-height: 40px;
+    font-size: 22px;
 }
 
 .actived {
@@ -91,20 +107,24 @@
 <template>
     <div>
         <div class="isEmpty" v-if="addresses.length == 0">亲，你还没有添加地址哦～</div>
-        <div class="address-title" v-else >选择地址</div>
+        <div class="address-title" v-else>选择地址</div>
         <div class="address-wrapper">
-            <div class="address-item" v-for="(item, index) in addresses" :class="{actived: selected}" @click="select">
-                <span class="address-item-delete" @click="deleteCurrentItem(item, index)">删除</span>
-                <span class="address-item-edit" @click="editCurrentItem(item, index)">修改</span>
+            <div class="address-item" v-for="(item, index) in addresses" :class="{actived: selected}" @click="select(item, index)">
+                <span class="address-item-delete" @click.stop="deleteCurrentItem(item, index)">删除</span>
+                <span class="address-item-edit" @click.stop="editCurrentItem(item, index)">修改</span>
                 <p class="address-item-name">{{item.name}}</p>
                 <p class="address-item-tele">{{item.tele}}</p>
                 <p class="address-item-local">{{item.region}} {{item.local}}</p>
             </div>
         </div>
-        <new-address :newAdd = "newAdd" @close="closeAddress" v-show="newAdd"></new-address>
+        <new-address :newAdd="newAdd" @close="closeAddress" @back="back" v-show="newAdd"></new-address>
         <edit-address :editItem="editItem" @edit="editAddress" v-show="editAdd"></edit-address>
-        <div class="btn" @click="handleAddress">
-            添加新地址
+        <div class="btn" v-if="addresses.length == 0" @click="handleAddress">
+            + &nbsp;添加新地址
+        </div>
+        <div v-else>
+            <div class="btn" @click="next">确认</div>
+            <div class="plusBtn" @click="handleAddress"> + &nbsp;添加新地址</div>
         </div>
     </div>
 </template>
@@ -123,33 +143,48 @@ export default {
             selected: false,
             addresses: [],
             editItem: null,
+            selectedAdd: null,
         }
     },
     methods: {
-        deleteCurrentItem(item, index){
-
+        next() {
+            if (this.selectedAdd != null) {
+                this.$router.push({
+                    path: '/pay',
+                    query: {
+                        id: this.$route.query.id
+                    }
+                })
+            }else{
+                alert("请选择一个收货地址");
+            }
         },
-        editCurrentItem(item, index){
+        back() {
+            this.newAdd = false;
+        },
+        deleteCurrentItem(item, index) {
+            this.addresses.splice(index, 1);
+        },
+        editCurrentItem(item, index) {
             this.editItem = item;
             this.editItem.index = index;
-            console.log(this.editItem);
             this.editAdd = true;
         },
-        select() {
+        select(item, index) {
             this.selected = true;
+            this.selectedAdd = item;
         },
         handleAddress() {
             this.newAdd = true
         },
         closeAddress(arg1, arg2, arg3, arg4) {
             this.newAdd = false;
-            const {name, tele, region, local} = {name:arg1, tele:arg2, region:arg3, local: arg4};
-            this.addresses.push({name, tele, region, local});
+            const { name, tele, region, local } = { name: arg1, tele: arg2, region: arg3, local: arg4 };
+            this.addresses.push({ name, tele, region, local });
         },
         editAddress(arg1) {
             this.editAdd = false;
             this.addresses.splice(arg1.index, 1, arg1);
-            console.log(this.addresses)
         },
     },
 }

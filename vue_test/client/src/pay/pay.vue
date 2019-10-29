@@ -8,7 +8,7 @@ li {
     list-style: none;
 }
 
-.select-method {
+.title {
     width: 168px;
     height: 60px;
     margin-left: 16px;
@@ -16,36 +16,36 @@ li {
     font-size: 28px;
 }
 
-.head {
+.good-wrapper {
     width: 100%;
     height: 108px;
 }
 
-.goods-img {
+.good-img {
     margin-left: 18px;
     margin-top: 22px;
 }
 
-.goods-img img {
+.good-img img {
     width: 66px;
     height: 65px;
     text-align: center;
 }
 
-.goods-img,
-.goods-info,
-.goods-detail-box {
+.good-img,
+.good-info,
+.good-detail-box {
     display: inline-block;
 }
 
-.goods-info {
+.good-info {
     margin-left: 21px;
     margin-top: 18px;
     position: absolute;
     font-size: 22px;
 }
 
-.goods-title {
+.good-title {
     width: 250px;
     height: 30px;
     text-overflow: ellipsis;
@@ -53,11 +53,11 @@ li {
     overflow: hidden;
 }
 
-.goods-detail-box {
+.good-detail-box {
     width: 250px;
 }
 
-.goods-detail {
+.good-detail {
     width: 100%;
     display: flex;
     justify-content: space-between;
@@ -70,7 +70,7 @@ li {
     font-size: 24px;
 }
 
-.goods-num {
+.good-num {
     width: 16px;
     height: 37px;
     line-height: 37px;
@@ -90,7 +90,7 @@ li {
     line-height: 104px;
 }
 
-.btn-purchase {
+.btn {
     width: 264px;
     height: 56px;
     position: fixed;
@@ -110,17 +110,15 @@ a {
 .active {
     border: solid 1px blue;
 }
-
 </style>
 <template>
-    <div class="pay-box">
-        <div class="select-method">
+    <div class="container">
+        <!-- <div class="title">
             选择支付方式
         </div>
-        <div class="head">
-            <!-- <div class="goods-img"><img :src="img[1].good_img"></div> -->
-            <div class="goods-img"><img :src="product.image"></div>
-            <div class="goods-info">
+        <div class="good-wrapper">
+            <div class="good-img"><img :src="product.image"></div>
+            <div class="good-info">
                 <div class="goods-title">{{goodsTitle}}</div>
             </div>
             <div class="goods-detail-box">
@@ -134,15 +132,13 @@ a {
                 </div>
             </div>
         </div>
-        <div class="payment" 
-             v-for="(item, index) in method"
-             :class="{active: index === currentNum}"
-             @click="selectPayment(index)">{{item}}</div>
-        <div class="btn-purchase">
+        <div class="payment" v-for="(item, index) in method" :class="{active: index === currentNum}" @click="selectPayment(index)">{{item}}
+        </div>
+        <div class="btn">
             <router-link exact :to="{ path: '/select', query:{id: this.$route.query.id }}">
                 去支付
             </router-link>
-        </div>
+        </div> -->
     </div>
 </template>
 <script>
@@ -154,33 +150,11 @@ export default {
             method: {},
             img: {},
             currentNum: null,
-            product: this.$route.query.product
         }
     },
-    methods:{
-        selectPayment(index){
+    methods: {
+        selectPayment(index) {
             this.currentNum = index;
         }
     },
-    mounted() {
-        this.axios
-            .get('/api/goods/pay', {
-                params: {
-                    id: this.$route.query.id,
-                },
-            })
-            .then(res => {
-                if (res.data.status.code === '200') {
-                    this.data = res.data.data;
-                    this.goodsTitle = this.data.info[0].good_title;
-                    this.img = this.data.result[1];
-                    this.method = this.data.result[2].map(function(pay) {
-                        return pay.method;
-                    });                 
-                    return;
-                }
-                alert(res.data.status.msg);
-            })
-    }
-}
 </script>

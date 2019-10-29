@@ -44,7 +44,7 @@
     margin-left: auto;
     margin-right: auto;
     margin-top: 197px;
-    background-color: #F1D500;
+    background-color: white;
     text-align: center;
     line-height: 56px;
     font-size: 22px;
@@ -55,6 +55,11 @@
     background-color: #f1d548;
     color: #3e0707;
 }
+
+.colorFul {
+    background: #F1D500 !important
+}
+
 </style>
 <template>
     <div>
@@ -65,12 +70,8 @@
                 <p class="method-wrapper-desc">{{content.desc}}</p>
             </div>
         </div>
-        <div class="btn">
-            <div v-if="itemIndex == null">下一步</div>
-            <router-link v-if="itemIndex == 0" tag="div" :to="{path: '/address', query: {id: this.$route.query.id}}">下一步
-            </router-link>
-            <router-link v-if="itemIndex == 1" tag="div" :to="{path: '/shops', query: {id: this.$route.query.id}}">下一步
-            </router-link>
+        <div class="btn" :class="{colorFul: itemIndex!==null}" @click="next">
+            下一步
         </div>
     </div>
 </template>
@@ -92,23 +93,14 @@ export default {
     methods: {
         select(index) {
             this.itemIndex = index;
+        },
+        next() {
+            if (this.itemIndex == 0) {
+                this.$router.push({ path: '/address', query: { id: this.$route.query.id } })
+            } else if (this.itemIndex == 1) {
+                this.$router.push({ path: '/shops', query: { id: this.$route.query.id } })
+            }
         }
     },
-    mounted() {
-        this.axios
-            .get('/api/goods/', {
-                params: {
-                    id: this.$route.query.id
-                },
-            })
-            .then(res => {
-                if (res.data.status.code === '200') {
-                    console.log(res.data.data);
-
-                    return;
-                };
-                return;
-            });
-    }
 }
 </script>
