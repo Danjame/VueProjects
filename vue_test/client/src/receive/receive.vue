@@ -1,8 +1,4 @@
 <style lang="less" scoped>
-* {
-    color: black;
-}
-
 .title {
     height: 40px;
     margin-top: 32px;
@@ -76,6 +72,7 @@
     </div>
 </template>
 <script>
+import Bus from '../bus.js';
 export default {
     data() {
         return {
@@ -101,6 +98,13 @@ export default {
                 this.$router.push({ path: '/shops', query: { id: this.$route.query.id } })
             }
         }
+    },
+    created(){
+        console.log("123");
+        Bus.$on('updata', (item)=> {
+            console.log("123");
+            console.log(item);
+        })
     },
 }
 </script>

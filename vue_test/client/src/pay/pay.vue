@@ -1,12 +1,5 @@
 <style lang="less" scoped>
-* {
-    padding: 0;
-    margin: 0;
-}
-
-li {
-    list-style: none;
-}
+/* 
 
 .title {
     width: 168px;
@@ -103,13 +96,9 @@ li {
     line-height: 56px;
 }
 
-a {
-    text-decoration: none;
-}
-
 .active {
     border: solid 1px blue;
-}
+} */
 </style>
 <template>
     <div class="container">
@@ -142,19 +131,28 @@ a {
     </div>
 </template>
 <script>
+    import Bus from '../bus.js';
 export default {
     data() {
         return {
-            data: {},
-            goodsTitle: null,
-            method: {},
-            img: {},
-            currentNum: null,
+            // data: {},
+            // goodsTitle: null,
+            // method: {},
+            // img: {},
+            // currentNum: null,
         }
     },
     methods: {
-        selectPayment(index) {
-            this.currentNum = index;
-        }
+        // selectPayment(index) {
+        //     this.currentNum = index;
+        // }
     },
+    mounted(){
+        console.log("123");
+        Bus.$on('updata', function (item) {
+            console.log("123");
+            console.log(item);
+        })
+    }
+}
 </script>

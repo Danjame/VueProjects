@@ -1,10 +1,10 @@
 import Vue from 'vue';
-import VueRouter from 'vue-router'
+import VueRouter from 'vue-router';
 
-import axios from 'axios'
-import VueAxios from 'vue-axios'
+import axios from 'axios';
+import VueAxios from 'vue-axios';
 
-Vue.use(VueAxios, axios)
+Vue.use(VueAxios, axios);
 Vue.use(VueRouter);
 
 import App from './app.vue';

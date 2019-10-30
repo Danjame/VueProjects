@@ -239,6 +239,7 @@ li {
     </div>
 </template>
 <script>
+import Bus from '../bus.js';
 export default {
     data() {
         return {
@@ -268,12 +269,10 @@ export default {
             this.sizeIndex = index;
             this.selected.size = item.size;
             this.selected.unit = this.price[index];
-            this.selected.total = this.selected.unit * this.selected.quantity;
         },
         selectNum(item, index) {
             this.numIndex = index;
             this.selected.quantity = item;
-            this.selected.total = this.selected.unit * this.selected.quantity;
         },
         extendMore() {
             if (this.extend == true) {
@@ -286,6 +285,7 @@ export default {
             if (this.selected.total == null || this.selected.total == 0) {
                 return;
             } else {
+                Bus.$emit('updata', this.selected);
                 this.$router.push({
                     path: '/receive',
                     query: {
@@ -295,14 +295,26 @@ export default {
             }
         }
     },
+    computed:{
+        updataTotal(){
+            return 
+        }
+    },
     watch: {
+        'selected.unit': function(){
+            this.selected.total = this.selected.unit * this.selected.quantity;
+        },
+        'selected.quantity': function(){
+            this.selected.total = this.selected.unit * this.selected.quantity;
+        },
         'selected.total': function() {
             if (this.selected.total == null || this.selected.total == 0) {
                 return;
             } else {
                 this.isColorful = true;
             }
-        }
+        },
+
     },
     mounted() {
         this.axios
