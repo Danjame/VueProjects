@@ -152,6 +152,6 @@ export default {
                     this.payMethos = res.data.data.result;
                 }
             })
-    },
+    }
 }
 </script>
