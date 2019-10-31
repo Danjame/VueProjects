@@ -1,9 +1,5 @@
 <style lang="less" scoped>
-    *{
-    padding: 0;
-    margin: 0;
-}
-.container{
+    .container{
     position: fixed;
     top: 0;
     right: 0;
@@ -327,7 +323,7 @@ export default {
         }
     },
     methods: {
-        handleBack(){
+        handleBack() {
             this.$emit("back")
         },
         showSelector() {

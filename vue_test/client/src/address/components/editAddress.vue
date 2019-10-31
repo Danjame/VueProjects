@@ -1,9 +1,5 @@
 <style lang="less" scoped>
-    *{
-    padding: 0;
-    margin: 0;
-}
-.container{
+    .container{
     position: fixed;
     top: 0;
     right: 0;
@@ -24,6 +20,7 @@
 
         & input{
             width: 100%;
+            height: 30px;
             margin-top: 33px;
             line-height: 30px;
             font-size: 22px;
@@ -33,6 +30,7 @@
 
         &-region{
             width: 100%;
+            height: 30px;
             margin-top: 33px;
             line-height: 30px;
             font-size: 22px;
@@ -326,8 +324,8 @@ export default {
             if (this.name == "姓名" || this.tele == "手机号码" || this.local == "详细地址" || !this.district) {
                 alert("请填写完整信息")
             } else {
-            	const {name, tele, region, local, index} = {name:arg1, tele:arg2, region:arg3, local: arg4, index: arg5};
-                this.$emit("edit", {name, tele, region, local, index});
+                const { name, tele, region, local, index } = { name: arg1, tele: arg2, region: arg3, local: arg4, index: arg5 };
+                this.$emit("edit", { name, tele, region, local, index });
             }
         },
         focusName() {

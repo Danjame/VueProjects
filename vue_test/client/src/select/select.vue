@@ -1,9 +1,4 @@
-div<style lang="less" scoped>
-* {
-    padding: 0;
-    margin: 0;
-}
-
+<style lang="less" scoped>
 li {
     list-style: none;
     font-size: 16px;
@@ -15,8 +10,8 @@ li {
 }
 
 .color-wrapper {
-    margin-left: 16px;
     margin-top: 32px;
+    margin-left: 16px;
 
     & .item-color {
         display: flex;
@@ -61,8 +56,8 @@ li {
             border-radius: 8px;
             background: white;
             line-height: 56px;
-            text-align: center;
             font-size: 22px;
+            text-align: center;
         }
     }
 }
@@ -97,8 +92,8 @@ li {
     }
 
     & .item-extend {
-        float: right;
         box-sizing: border-box;
+        float: right;
         width: 128px;
         height: 56px;
         margin-right: 16px;
@@ -239,7 +234,6 @@ li {
     </div>
 </template>
 <script>
-import Bus from '../bus.js';
 export default {
     data() {
         return {
@@ -251,7 +245,10 @@ export default {
             price: {},
             extend: true,
             selected: {
-                color: null,
+                color: {
+                    img: '',
+                    color: ''
+                },
                 size: null,
                 quantity: null,
                 unit: null,
@@ -263,7 +260,8 @@ export default {
     methods: {
         selectColor(item, index) {
             this.colorIndex = index;
-            this.selected.color = item.color;
+            this.selected.color.img = item.image;
+            this.selected.color.color = item.color;
         },
         selectSize(item, index) {
             this.sizeIndex = index;
@@ -285,7 +283,7 @@ export default {
             if (this.selected.total == null || this.selected.total == 0) {
                 return;
             } else {
-                Bus.$emit('updata', this.selected);
+                this.$store.commit('selectItem', this.selected)
                 this.$router.push({
                     path: '/receive',
                     query: {
@@ -295,16 +293,16 @@ export default {
             }
         }
     },
-    computed:{
-        updataTotal(){
-            return 
+    computed: {
+        updataTotal() {
+            return
         }
     },
     watch: {
-        'selected.unit': function(){
+        'selected.unit': function() {
             this.selected.total = this.selected.unit * this.selected.quantity;
         },
-        'selected.quantity': function(){
+        'selected.quantity': function() {
             this.selected.total = this.selected.unit * this.selected.quantity;
         },
         'selected.total': function() {
@@ -329,9 +327,7 @@ export default {
                     this.price = res.data.data.result[1].map(function(price) {
                         return price.good_price;
                     });
-                    return;
                 }
-                alert(res.data.status.msg);
             })
     }
 }

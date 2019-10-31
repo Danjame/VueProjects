@@ -1,24 +1,29 @@
 <!Doctype html>
-<html xmlns=http://www.w3.org/1999/xhtml>
-<head>
-    <meta http-equiv=Content-Type content="text/html;charset=utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0">
-    <title><%= htmlWebpackPlugin.options.title %></title>
-    <script src="//g.alicdn.com/fdilab/lib3rd/viewport-units-buggyfill/0.6.2/??viewport-units-buggyfill.hacks.min.js,viewport-units-buggyfill.min.js"></script>
-    <script>
-    window.onload = function () { 
-        window.viewportUnitsBuggyfill.init({ hacks: window.viewportUnitsBuggyfillHacks });
-    }
-    </script>
-    <style>
-        body{
-            margin:0;
-            padding: 0;
-            background-color: #eee;
-        }
-    </style>
+<html xmlns=http://www.w3.org/1999/xhtml> <head>
+<meta http-equiv=Content-Type content="text/html;charset=utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0">
+<title>
+    <%= htmlWebpackPlugin.options.title %>
+</title>
+<script src="//g.alicdn.com/fdilab/lib3rd/viewport-units-buggyfill/0.6.2/??viewport-units-buggyfill.hacks.min.js,viewport-units-buggyfill.min.js"></script>
+<script>
+window.onload = function() {
+    window.viewportUnitsBuggyfill.init({ hacks: window.viewportUnitsBuggyfillHacks });
+}
+</script>
+<style>
+* {
+    margin: 0;
+    padding: 0;
+}
+body{
+    background-color: #eee;
+}
+</style>
 </head>
+
 <body>
     <main id="app"></main>
 </body>
+
 </html>

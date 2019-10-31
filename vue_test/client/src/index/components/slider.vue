@@ -56,6 +56,8 @@
         }
 
         &-price {
+            height: 37px;
+            line-height: 37px;
             margin-top: 16px;
             font-size: 26px;
         }

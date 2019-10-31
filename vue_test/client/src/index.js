@@ -1,20 +1,21 @@
-import Vue from 'vue';
-import VueRouter from 'vue-router';
+import Vue from 'vue'
+import VueRouter from 'vue-router'
 
-import axios from 'axios';
-import VueAxios from 'vue-axios';
+import axios from 'axios'
+import VueAxios from 'vue-axios'
+import store from './store.js'
 
-Vue.use(VueAxios, axios);
-Vue.use(VueRouter);
+Vue.use(VueAxios, axios)
+Vue.use(VueRouter)
 
-import App from './app.vue';
-import Index from './index/index.vue';
-import Detail from './detail/detail.vue';
-import Select from './select/select.vue';
-import Pay from './pay/pay.vue';
-import Receive from './receive/receive.vue';
-import Address from './address/address.vue';
-import Shops from './shops/shops.vue';
+import App from './app.vue'
+import Index from './index/index.vue'
+import Detail from './detail/detail.vue'
+import Select from './select/select.vue'
+import Pay from './pay/pay.vue'
+import Receive from './receive/receive.vue'
+import Address from './address/address.vue'
+import Shops from './shops/shops.vue'
 
 let router = new VueRouter({
     routes: [{
@@ -52,5 +53,6 @@ let router = new VueRouter({
 new Vue({
     el: '#app',
     router,
+    store,
     render: h => h(App),
 });

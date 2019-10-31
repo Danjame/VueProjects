@@ -1,11 +1,7 @@
 <style lang="less" scoped>
-* {
-    padding: 0;
-    margin: 0;
-}
-
 .isEmpty {
     width: 264px;
+    height: 30px;
     margin: 0 auto;
     margin-top: 325px;
     line-height: 30px;
@@ -58,17 +54,20 @@
         }
 
         &-name {
+            height: 30px;
             line-height: 30px;
             font-size: 22px;
         }
 
         &-tele {
+            height: 28px;
             margin-top: 17px;
             line-height: 28px;
             font-size: 20px;
         }
 
         &-local {
+            height: 28px;
             margin-top: 8px;
             line-height: 28px;
             font-size: 20px;
@@ -149,13 +148,14 @@ export default {
     methods: {
         next() {
             if (this.selectedAdd != null) {
+                this.$store.commit('selectAddress', this.selectedAdd)
                 this.$router.push({
                     path: '/pay',
                     query: {
                         id: this.$route.query.id
                     }
                 })
-            }else{
+            } else {
                 alert("请选择一个收货地址");
             }
         },

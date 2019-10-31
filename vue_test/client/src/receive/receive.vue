@@ -19,7 +19,7 @@
         width: 100%;
         height: 136px;
         margin-bottom: 16px;
-        padding: 5px 24px 10px 24px;
+        padding: 24px 24px 38px 24px;
         border-radius: 12px;
         background-color: white;
         font-size: 20px;
@@ -29,6 +29,7 @@
         }
 
         &-desc {
+            margin-top: 16px;
             font-size: 20px;
         }
     }
@@ -55,7 +56,6 @@
 .colorFul {
     background: #F1D500 !important
 }
-
 </style>
 <template>
     <div>
@@ -72,7 +72,6 @@
     </div>
 </template>
 <script>
-import Bus from '../bus.js';
 export default {
     data() {
         return {
@@ -93,18 +92,13 @@ export default {
         },
         next() {
             if (this.itemIndex == 0) {
+                this.$store.commit('receiveMethod', this.delivery[this.itemIndex].name);
                 this.$router.push({ path: '/address', query: { id: this.$route.query.id } })
             } else if (this.itemIndex == 1) {
+                this.$store.commit('receiveMethod', this.delivery[this.itemIndex].name);
                 this.$router.push({ path: '/shops', query: { id: this.$route.query.id } })
             }
         }
-    },
-    created(){
-        console.log("123");
-        Bus.$on('updata', (item)=> {
-            console.log("123");
-            console.log(item);
-        })
     },
 }
 </script>

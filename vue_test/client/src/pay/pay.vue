@@ -1,158 +1,157 @@
 <style lang="less" scoped>
-/* 
-
-.title {
-    width: 168px;
-    height: 60px;
+.pagetitle {
+    margin-top: 32px;
     margin-left: 16px;
-    line-height: 62px;
+    line-height: 40px;
     font-size: 28px;
 }
 
 .good-wrapper {
     width: 100%;
-    height: 108px;
-}
-
-.good-img {
-    margin-left: 18px;
-    margin-top: 22px;
-}
-
-.good-img img {
-    width: 66px;
-    height: 65px;
-    text-align: center;
-}
-
-.good-img,
-.good-info,
-.good-detail-box {
-    display: inline-block;
-}
-
-.good-info {
-    margin-left: 21px;
-    margin-top: 18px;
-    position: absolute;
-    font-size: 22px;
-}
-
-.good-title {
-    width: 250px;
-    height: 30px;
-    text-overflow: ellipsis;
-    white-space: nowrap;
+    margin-top: 25px;
+    margin-left: 20px;
     overflow: hidden;
+
+    & .good-img {
+        float: left;
+        width: 72px;
+        height: 71px;
+        margin-right: 19px;
+
+        & img {
+            width: 72px;
+            height: 71px;
+        }
+    }
+
+    & .good-info {
+        float: left;
+        width: 245px;
+
+        &-title {
+            width: 226px;
+            height: 30px;
+            line-height: 30px;
+            font-size: 23px;
+            text-overflow: ellipsis;
+            white-space: nowrap;
+            overflow: hidden;
+        }
+
+        &-detail {
+            display: flex;
+            margin-top: 8px;
+            flex-direction: row;
+            justify-content: space-between;
+
+            &-price {
+                height: 37px;
+                line-height: 37px;
+                font-size: 26px;
+            }
+
+            &-quan {
+                height: 37px;
+                line-height: 37px;
+                font-size: 26px;
+            }
+        }
+    }
+
 }
 
-.good-detail-box {
-    width: 250px;
-}
+.payment-wrapper {
+    clear: both;
+    margin-top: 38px;
+    margin-bottom: 97px;
 
-.good-detail {
-    width: 100%;
-    display: flex;
-    justify-content: space-between;
-    margin-left: 21px;
-}
-
-.goods-price {
-    width: 63px;
-    height: 37px;
-    font-size: 24px;
-}
-
-.good-num {
-    width: 16px;
-    height: 37px;
-    line-height: 37px;
-    font-size: 24px;
-}
-
-.payment {
-    width: 90%;
-    height: 104px;
-    margin-left: auto;
-    margin-right: auto;
-    margin-top: 16px;
-    padding-left: 10px;
-    border-radius: 10px;
-    background-color: white;
-    font-size: 22px;
-    line-height: 104px;
+    & .payment-method {
+        width: 338px;
+        height: 104px;
+        margin: 0 auto;
+        margin-bottom: 16px;
+        padding-left: 19px;
+        border-radius: 12px;
+        background: white;
+        font-size: 22px;
+        line-height: 104px;
+    }
 }
 
 .btn {
     width: 264px;
     height: 56px;
     position: fixed;
-    bottom: 56px;
-    margin-left: 56px;
-    border-radius: 30px;
-    background-color: #F3DA00;
+    margin: 0 auto;
+    left: 0;
+    right: 0;
+    bottom: 25px;
+    border-radius: 28px;
+    background: #F1D500;
     font-size: 25px;
-    text-align: center;
     line-height: 56px;
+    text-align: center;
 }
 
 .active {
-    border: solid 1px blue;
-} */
+    background: #F1D500 !important;
+}
 </style>
 <template>
     <div class="container">
-        <!-- <div class="title">
+        <div class="pagetitle">
             选择支付方式
         </div>
         <div class="good-wrapper">
-            <div class="good-img"><img :src="product.image"></div>
+            <div class="good-img"> <img :src="$store.state.selected.color.img"></div>
             <div class="good-info">
-                <div class="goods-title">{{goodsTitle}}</div>
-            </div>
-            <div class="goods-detail-box">
-                <div class="goods-detail">
-                    <div class="goods-price">
-                        ￥{{product.total}}
+                <div class="good-info-title">{{$store.state.itemTitle}}</div>
+                <div class="good-info-detail">
+                    <div class="good-info-detail-price">
+                        ￥{{$store.state.selected.total}}
                     </div>
-                    <span class="goods-num">
-                        {{product.quantity}}
+                    <span class="good-info-detail-quan">
+                        {{$store.state.selected.quantity}}
                     </span>
                 </div>
             </div>
         </div>
-        <div class="payment" v-for="(item, index) in method" :class="{active: index === currentNum}" @click="selectPayment(index)">{{item}}
+        <div class="payment-wrapper">
+            <div class="payment-method" v-for="(item, index) in payMethos" :class="{active: index === currentIndex}" @click="selectPayment(index)">{{item.method}}
+            </div>
         </div>
         <div class="btn">
             <router-link exact :to="{ path: '/select', query:{id: this.$route.query.id }}">
-                去支付
+                确认
             </router-link>
-        </div> -->
+        </div>
     </div>
 </template>
 <script>
-    import Bus from '../bus.js';
 export default {
     data() {
         return {
-            // data: {},
-            // goodsTitle: null,
-            // method: {},
-            // img: {},
-            // currentNum: null,
+            payMethos: null,
+            currentIndex: null,
         }
     },
     methods: {
-        // selectPayment(index) {
-        //     this.currentNum = index;
-        // }
+        selectPayment(index) {
+            this.currentIndex = index;
+        }
     },
-    mounted(){
-        console.log("123");
-        Bus.$on('updata', function (item) {
-            console.log("123");
-            console.log(item);
-        })
-    }
+    mounted() {
+        this.axios
+            .get('/api/goods/pay', {
+                params: {
+                    id: this.$route.query.id
+                }
+            })
+            .then(res => {
+                if (res.data.status.code === '200') {
+                    this.payMethos = res.data.data.result;
+                }
+            })
+    },
 }
 </script>
