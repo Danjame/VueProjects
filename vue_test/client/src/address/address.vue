@@ -185,7 +185,7 @@ export default {
         editAddress(arg1) {
             this.editAdd = false;
             this.addresses.splice(arg1.index, 1, arg1);
-        },
-    },
+        }
+    }
 }
 </script>

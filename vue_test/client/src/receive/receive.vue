@@ -99,6 +99,6 @@ export default {
                 this.$router.push({ path: '/shops', query: { id: this.$route.query.id } })
             }
         }
-    },
+    }
 }
 </script>

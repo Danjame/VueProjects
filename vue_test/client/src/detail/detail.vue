@@ -185,7 +185,7 @@ export default {
                     this.titleImg = this.goodImg[0].good_img;
                     this.property = res.data.data.result[1];
                 }
-            });
-    },
+            })
+    }
 }
 </script>

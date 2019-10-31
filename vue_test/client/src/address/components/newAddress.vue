@@ -413,6 +413,6 @@ export default {
             this.regionText = `${this.province.name}${this.city.name}${this.district.name}`;
             this.regionSelector = false;
         }
-    },
+    }
 }
 </script>
