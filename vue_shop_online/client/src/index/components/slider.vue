@@ -27,7 +27,7 @@
 
         &-pic {
             width: 100%;
-            min-height: 376px;
+            min-height: 280px;
             display: flex;
             flex-direction: column;
             justify-content: center;
@@ -36,7 +36,7 @@
 
         img {
             max-width: 100%;
-            max-height: 330px;
+            max-height: 280px;
             border-radius: 10px;  
         }
 
@@ -67,7 +67,8 @@
             height: 56px;
             margin-left: auto;
             margin-right: auto;
-            margin-top: 33px;
+            margin-top: 16px;
+            margin-bottom: 20px;
             border-radius: 28px;
             line-height: 56px;
             background: #f1d500;

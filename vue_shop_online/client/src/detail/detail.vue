@@ -110,7 +110,7 @@
     margin-top: 50px;
     margin-left: auto;
     margin-right: auto;
-    margin-bottom: 16px;
+    margin-bottom: 20px;
     border-radius: 28px;
     background-color: #F1D500;
     font-size: 22px;

@@ -86,7 +86,7 @@
     margin-left: auto;
     margin-right: auto;
     margin-top: 300px;
-    background-color: #F1D000;
+    background-color: #F1D500;
     text-align: center;
     line-height: 56px;
     font-size: 22px;
@@ -313,7 +313,7 @@ export default {
                 "name": "梨树县",
                 "value": "220322",
                 "parent": "220300"
-            }, ]
+            } ]
         }
     },
     methods: {

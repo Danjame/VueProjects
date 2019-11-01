@@ -117,13 +117,16 @@
             </div>
         </div>
         <div class="payment-wrapper">
-            <div class="payment-method" v-for="(item, index) in payMethos" :class="{active: index === currentIndex}" @click="selectPayment(index)">{{item.method}}
+            <div class="payment-method" v-for="(item, index) in payMethods" :class="{active: index === currentIndex}" @click="selectPayment(item, index)">{{item.method}}
             </div>
         </div>
-        <div class="btn">
-            <router-link exact :to="{ path: '/select', query:{id: this.$route.query.id }}">
-                确认
-            </router-link>
+        <wechat-pay v-if="showMethod==0"></wechat-pay>
+        <credit-card else-if="showMethod==1"></credit-card>
+        <store-pay else-if="showMethod==2"></store-pay>
+        <ali-pay else-if="showMethod==3"></ali-pay>
+        <union-pay else-if="showMethod==4"></union-pay>
+        <div class="btn" @click="next">
+            去支付
         </div>
     </div>
 </template>
@@ -131,13 +134,18 @@
 export default {
     data() {
         return {
-            payMethos: null,
+            payMethods: null,
             currentIndex: null,
+            showMethod: null,
         }
     },
     methods: {
-        selectPayment(index) {
+        selectPayment(item, index) {
             this.currentIndex = index;
+        },
+        next() {
+            this.showMethod = this.currentIndex;
+            // this.$router.push({ path: '/', query:{id: this.$route.query.id }})
         }
     },
     mounted() {
@@ -149,7 +157,7 @@ export default {
             })
             .then(res => {
                 if (res.data.status.code === '200') {
-                    this.payMethos = res.data.data.result;
+                    this.payMethods = res.data.data.result;
                 }
             })
     }

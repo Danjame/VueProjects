@@ -168,6 +168,7 @@ li {
     height: 56px;
     margin-left: auto;
     margin-right: auto;
+    margin-bottom: 20px;
     background: white;
     line-height: 56px;
     font-size: 22px;

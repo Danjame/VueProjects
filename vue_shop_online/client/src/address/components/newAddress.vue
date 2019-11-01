@@ -1,11 +1,11 @@
 <style lang="less" scoped>
     .container{
-    position: fixed;
-    top: 0;
-    right: 0;
-    bottom: 0;
-    left: 0;
-    background: white;
+position: fixed;
+top: 0;
+right: 0;
+bottom: 0;
+left: 0;
+background: white;
 
     & .title{
         margin-top: 32px;
@@ -85,18 +85,20 @@
             margin-top: 7px;
         }
     }
-}
-.btn {
-    width: 264px;
-    height: 56px;
-    margin-left: auto;
-    margin-right: auto;
-    margin-top: 300px;
-    background-color: #F1D000;
-    text-align: center;
-    line-height: 56px;
-    font-size: 22px;
-    border-radius: 28px;
+
+    & .btn{
+        width: 264px;
+        height: 56px;
+        margin-left: auto;
+        margin-right: auto;
+        margin-top: 70px;
+        margin-bottom: 20px;
+        background: #F1D500;
+        text-align: center;
+        line-height: 56px;
+        font-size: 22px;
+        border-radius: 28px;
+    }
 }
 
 </style>

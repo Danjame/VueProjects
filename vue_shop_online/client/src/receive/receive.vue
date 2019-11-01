@@ -40,7 +40,8 @@
     height: 56px;
     margin-left: auto;
     margin-right: auto;
-    margin-top: 197px;
+    margin-top: 180px;
+    margin-bottom: 20px;
     background-color: white;
     text-align: center;
     line-height: 56px;
