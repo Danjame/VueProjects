@@ -85,7 +85,7 @@
     height: 56px;
     margin-left: auto;
     margin-right: auto;
-    margin-top: 300px;
+    margin-top: 60px;
     background-color: #F1D500;
     text-align: center;
     line-height: 56px;
@@ -95,7 +95,7 @@
 
 </style>
 <template>
-    <div class="container">
+    <div class="container" @touchmove.prevent>
         <div class="title">填写地址</div>
         <div class="input-wrapper">
             <input type="text" v-model="name" @focus="focusName" @blur="blurName">

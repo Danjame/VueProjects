@@ -2,10 +2,11 @@
     .container{
 position: fixed;
 top: 0;
-right: 0;
-bottom: 0;
 left: 0;
+width: 100%;
+height: 100%;
 background: white;
+z-index: 99;
 
     & .title{
         margin-top: 32px;
@@ -14,6 +15,7 @@ background: white;
     }
     & .backBtn{
         float: right;
+        padding: 1px;
         margin-top: -33px;
         margin-right: 16px;
         border-radius: 6px;
@@ -102,7 +104,7 @@ background: white;
 
 </style>
 <template>
-    <div class="container">
+    <div class="container" @touchmove.prevent>
         <div class="title">填写地址</div>
         <div class="backBtn" @click="handleBack">返回</div>
         <div class="input-wrapper">
@@ -143,7 +145,7 @@ background: white;
             <input type="text" v-model="local" @focus="focusLocal" @blur="blurLocal">
             <hr />
         </div>
-        <div class="btn" @click="handleConfirm(name,tele,regionText,local)">
+        <div class="btn" @click="handleConfirm(name, tele, regionText,local)">
             保存
         </div>
     </div>
@@ -335,6 +337,9 @@ export default {
                 alert("请填写完整信息")
             } else {
                 this.$emit("close", arg1, arg2, arg3, arg4);
+                this.province = '';
+                this.cities.length = 0;
+                this.districts.length = 0;
             }
         },
         focusName() {
@@ -395,7 +400,7 @@ export default {
             this.regionText = "省、市、县"
         },
         province: function() {
-            this.cities = [];
+            this.cities.length = 0;
             this.region.forEach((item, index) => {
                 if (item.parent && item.parent == this.province.value) {
                     this.cities.push(item);
@@ -403,7 +408,7 @@ export default {
             })
         },
         city: function() {
-            this.districts = [];
+            this.districts.length = 0;
             this.region.forEach((item, index) => {
                 if (item.parent && item.parent == this.city.value) {
                     this.districts.push(item);
