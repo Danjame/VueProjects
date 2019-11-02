@@ -63,7 +63,7 @@ li {
 }
 
 .quantity-wrapper {
-    min-height: 308px;
+    min-height: 260px;
     margin-left: 16px;
     margin-top: 32px;
 

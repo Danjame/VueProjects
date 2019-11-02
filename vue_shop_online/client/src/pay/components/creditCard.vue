@@ -15,7 +15,7 @@
 </template>
 <script>
 export default {
-    name: CreditCard,
+    name: 'CreditCard',
     data() {
         return {
 

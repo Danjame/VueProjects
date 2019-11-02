@@ -15,7 +15,7 @@
 </template>
 <script>
 export default {
-    name: WechatPay,
+    name: 'WechatPay',
     data() {
         return {
 

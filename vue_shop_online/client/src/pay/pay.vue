@@ -67,14 +67,14 @@
 
     & .payment-method {
         width: 338px;
-        height: 104px;
+        height: 88px;
         margin: 0 auto;
         margin-bottom: 16px;
         padding-left: 19px;
         border-radius: 12px;
         background: white;
         font-size: 22px;
-        line-height: 104px;
+        line-height: 88px;
     }
 }
 
@@ -103,35 +103,55 @@
             选择支付方式
         </div>
         <div class="good-wrapper">
-            <div class="good-img"> <img :src="$store.state.selected.color.img"></div>
+            <div class="good-img"> 
+                <!-- <img :src="$store.state.selected.color.img"> -->
+            </div>
             <div class="good-info">
-                <div class="good-info-title">{{$store.state.itemTitle}}</div>
+                <div class="good-info-title">
+                    好玩掌机
+                <!-- {{$store.state.itemTitle}} -->
+            </div>
                 <div class="good-info-detail">
                     <div class="good-info-detail-price">
-                        ￥{{$store.state.selected.total}}
+                        2000元rmb
+                        <!-- ￥{{$store.state.selected.total}} -->
                     </div>
                     <span class="good-info-detail-quan">
-                        {{$store.state.selected.quantity}}
+                        2
+                        <!-- {{$store.state.selected.quantity}} -->
                     </span>
                 </div>
             </div>
         </div>
         <div class="payment-wrapper">
-            <div class="payment-method" v-for="(item, index) in payMethods" :class="{active: index === currentIndex}" @click="selectPayment(item, index)">{{item.method}}
+            <div class="payment-method" v-for="(item, index) in payMethods" :class="{active: index === currentIndex}" @click="selectPayment(item, index)">
+                {{item.method}}
             </div>
         </div>
-        <wechat-pay v-if="showMethod==0"></wechat-pay>
-        <credit-card else-if="showMethod==1"></credit-card>
-        <store-pay else-if="showMethod==2"></store-pay>
-        <ali-pay else-if="showMethod==3"></ali-pay>
-        <union-pay else-if="showMethod==4"></union-pay>
+        <wechat-pay v-show="showMethod==0"></wechat-pay>
+        <credit-card v-show="showMethod==1"></credit-card>
+        <store-pay v-show="showMethod==2"></store-pay>
+        <ali-pay v-show="showMethod==3"></ali-pay>
+        <union-pay v-show="showMethod==4"></union-pay>
         <div class="btn" @click="next">
             去支付
         </div>
     </div>
 </template>
 <script>
+import WechatPay from './components/wechatPay.vue'
+import CreditCard from './components/creditCard.vue'
+import StorePay from './components/storePay.vue'
+import AliPay from './components/aliPay.vue'
+import UnionPay from './components/unionPay.vue'
 export default {
+    components: {
+        WechatPay,
+        CreditCard,
+        StorePay,
+        AliPay,
+        UnionPay
+    },
     data() {
         return {
             payMethods: null,
@@ -149,6 +169,7 @@ export default {
         }
     },
     mounted() {
+        console.log(this.showMethod);
         this.axios
             .get('/api/goods/pay', {
                 params: {

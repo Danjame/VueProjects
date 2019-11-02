@@ -15,7 +15,7 @@
 </template>
 <script>
 export default {
-    name: StorePay,
+    name: 'StorePay',
     data() {
         return {
 
