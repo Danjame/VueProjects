@@ -99,16 +99,12 @@
     font-size: 22px;
 }
 
-.hidden {
-    opacity: 0.7;
-}
-
 .actived {
     background: #F1D500 !important
 }
 </style>
 <template>
-    <div class="wrapper" :class="{hidden: isHidden}">
+    <div class="wrapper">
         <div class="isEmpty" v-if="addresses.length == 0">亲，你还没有添加地址哦～</div>
         <div class="address-title" v-else>选择地址</div>
         <div class="address-wrapper">
@@ -141,7 +137,6 @@ export default {
     },
     data() {
         return {
-            isHidden: false,
             newAdd: false,
             editAdd: false,
             selected: false,
@@ -165,7 +160,6 @@ export default {
             }
         },
         back() {
-            this.isHidden = false;
             this.newAdd = false;
         },
         deleteCurrentItem(item, index) {
@@ -174,7 +168,6 @@ export default {
         editCurrentItem(item, index) {
             this.editItem = item;
             this.editItem.index = index;
-            this.isHidden = true;
             this.editAdd = true;
         },
         select(item, index) {
@@ -182,17 +175,14 @@ export default {
             this.selectedAdd = item;
         },
         handleAddress() {
-            this.isHidden = true;
             this.newAdd = true
         },
         closeAddress(arg1, arg2, arg3, arg4) {
-            this.isHidden = false;
             this.newAdd = false;
             const { name, tele, region, local } = { name: arg1, tele: arg2, region: arg3, local: arg4 };
             this.addresses.push({ name, tele, region, local });
         },
         editAddress(arg1) {
-            this.isHidden = false;
             this.editAdd = false;
             this.addresses.splice(arg1.index, 1, arg1);
         }

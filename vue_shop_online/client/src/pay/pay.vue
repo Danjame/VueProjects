@@ -7,7 +7,6 @@
 }
 
 .good-wrapper {
-    width: 100%;
     margin-top: 25px;
     margin-left: 20px;
     overflow: hidden;
@@ -128,7 +127,7 @@
                 {{item.method}}
             </div>
         </div>
-        <wechat-pay v-show="showMethod==0"></wechat-pay>
+        <wechat-pay v-show="showMethod==0" @back="back"></wechat-pay>
         <credit-card v-show="showMethod==1"></credit-card>
         <store-pay v-show="showMethod==2"></store-pay>
         <ali-pay v-show="showMethod==3"></ali-pay>
@@ -160,6 +159,9 @@ export default {
         }
     },
     methods: {
+        back(){
+            this.showMethod = null;
+        },
         selectPayment(item, index) {
             this.currentIndex = index;
         },
@@ -169,7 +171,6 @@ export default {
         }
     },
     mounted() {
-        console.log(this.showMethod);
         this.axios
             .get('/api/goods/pay', {
                 params: {
