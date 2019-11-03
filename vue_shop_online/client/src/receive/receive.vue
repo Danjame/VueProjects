@@ -96,7 +96,7 @@ export default {
                 this.$router.push({ path: '/address', query: { id: this.$route.query.id } })
             } else if (this.itemIndex == 1) {
                 this.$store.commit('receiveMethod', this.delivery[this.itemIndex].name);
-                this.$router.push({ path: '/shops', query: { id: this.$route.query.id } })
+                this.$router.push({ path: '/region', query: { id: this.$route.query.id } })
             }
         }
     }

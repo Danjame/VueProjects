@@ -28,10 +28,10 @@ export default new Vuex.Store({
 			state.itemTitle = title;
 		},
 		selectRegion(state, region){
-			state.serveice.region = region;
+			state.service.region = region;
 		},
 		selectCenter(state, center){
-			state.serveice.center = center;
+			state.service.center = center;
 		}
 	}
 });

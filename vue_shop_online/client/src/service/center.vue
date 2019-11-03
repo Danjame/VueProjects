@@ -12,18 +12,28 @@
     }
 
     & .region {
+        margin-right: 16px;
         & li {
             list-style: none;
-            float: left;
-            width: 103px;
-            height: 103px;
-            margin-right: 16px;
+            box-sizing: border-box;
+            width: 344px;
+            height: 168px;
             margin-bottom: 16px;
+            padding: 24px;
             border-radius: 12px;
             background: white;
-            line-height: 103px;
-            text-align: center;
-            font-size: 22px;
+            & .centerName{
+                margin-bottom: 10px;
+                font-size: 22px;
+            }
+            & .centerAdd{
+                line-height: 28px;
+                font-size: 20px;
+            }
+            & .centerTele{
+                line-height: 28px;
+                font-size: 20px;
+            }
         }
 
         & .activated {
@@ -49,10 +59,14 @@
 <template>
     <div class="container">
         <div class="title">
-            {{}}
+            {{region.region_name}}
         </div>
         <ul class="region">
-            <li v-for="(item, index) in regions" :class="{activated: itemIndex == index}" @click="select (item, index)">{{item.region_name}}</li>
+            <li v-for="(item, index) in centers" :class="{activated: itemIndex == index}" @click="select (item, index)">
+                <p class="centerName">{{item.center_name}}</p>
+                <p class="centerAdd">{{item.center_address}}</p>
+                <p class="centerTele">{{item.center_tele}}</p>
+            </li>
         </ul>
         <div class="confirm-btn" @click="next">
             下一步
@@ -88,11 +102,10 @@ export default {
             })
             .then(res => {
                 if (res.data.status.code === '200') {
-                    res.data.result.forEach((item)=>{
-                        if(item.region_id == region.region_id){
+                    res.data.result.forEach(item => {
+                        if (item.region_id == this.region.region_id) {
                             this.centers.push(item);
                         }
-                        console.log(this.centers)
                     })
                     return;
                 }

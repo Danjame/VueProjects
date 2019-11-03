@@ -42,12 +42,12 @@ let router = new VueRouter({
             component: Address
         },
         {
-            path: '/Region',
-            component: region
+            path: '/region',
+            component: Region
         },
         {
-            path: '/Center',
-            component: center
+            path: '/center',
+            component: Center
         },
         {
             path: '/pay',
