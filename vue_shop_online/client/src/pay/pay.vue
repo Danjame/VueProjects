@@ -175,7 +175,7 @@ export default {
             })
             .then(res => {
                 if (res.data.status.code === '200') {
-                    this.payMethods = res.data.data.result;
+                    this.payMethods = res.data.result;
                 }
             })
     }

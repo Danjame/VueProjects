@@ -198,9 +198,9 @@ li {
         <div class="color-wrapper">
             <div class="item-title">选择颜色</div>
             <ul class="item-color">
-                <li v-for="(item, index) in result" :class="{activated:index == colorIndex}" @click="selectColor(item, index)">
+                <li v-for="(item, index) in result" @click="selectColor(item, index)">
                     <div><img :src="item.image" alt=""></div>
-                    <div class="item-color-text">{{item.color}}</div>
+                    <div class="item-color-text" :class="{activated:index == colorIndex}">{{item.color}}</div>
                 </li>
             </ul>
         </div>
@@ -247,8 +247,8 @@ export default {
             extend: true,
             selected: {
                 color: {
-                    img: '',
-                    color: ''
+                    img: null,
+                    color: null
                 },
                 size: null,
                 quantity: null,
@@ -281,7 +281,7 @@ export default {
             }
         },
         next() {
-            if (this.selected.total == null || this.selected.total == 0) {
+            if (this.selected.total == null || this.selected.total == 0 || this.selected.color.color == null) {
                 return;
             } else {
                 this.$store.commit('selectItem', this.selected)
@@ -300,20 +300,17 @@ export default {
         }
     },
     watch: {
-        'selected.unit': function() {
-            this.selected.total = this.selected.unit * this.selected.quantity;
+        selected: {
+            handler: function() {
+                this.selected.total = this.selected.unit * this.selected.quantity;
+                if (this.selected.total == null || this.selected.total == 0 || this.selected.color.color == null) {
+                    return;
+                } else {
+                    this.isColorful = true;
+                }
+            },
+            deep: true
         },
-        'selected.quantity': function() {
-            this.selected.total = this.selected.unit * this.selected.quantity;
-        },
-        'selected.total': function() {
-            if (this.selected.total == null || this.selected.total == 0) {
-                return;
-            } else {
-                this.isColorful = true;
-            }
-        },
-
     },
     mounted() {
         this.axios

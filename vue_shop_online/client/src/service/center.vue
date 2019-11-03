@@ -88,7 +88,7 @@ export default {
         },
         next() {
             this.$router.push({
-                path: '/center',
+                path: '/pay',
                 query: { id: this.$route.query.id }
             })
         }
