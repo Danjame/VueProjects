@@ -14,7 +14,8 @@ import Detail from './detail/detail.vue'
 import Select from './select/select.vue'
 import Receive from './receive/receive.vue'
 import Address from './address/address.vue'
-import Shops from './shops/shops.vue'
+import Region from './service/region.vue'
+import Center from './service/center.vue'
 import Pay from './pay/pay.vue'
 import Verification from './pay/components/creditcard/src/verification.vue'
 import Help from './pay/components/creditcard/src/help.vue'
@@ -41,8 +42,12 @@ let router = new VueRouter({
             component: Address
         },
         {
-            path: '/shops',
-            component: Shops
+            path: '/Region',
+            component: region
+        },
+        {
+            path: '/Center',
+            component: center
         },
         {
             path: '/pay',

@@ -9,6 +9,10 @@ export default new Vuex.Store({
 		selected: null,
 		method: null,
 		address: null,
+		service:{
+			region: '',
+			center:''
+		}
 	},
 	mutations:{
 		selectItem(state, selected){
@@ -22,6 +26,12 @@ export default new Vuex.Store({
 		},
 		selectTitle(state, title){
 			state.itemTitle = title;
+		},
+		selectRegion(state, region){
+			state.serveice.region = region;
+		},
+		selectCenter(state, center){
+			state.serveice.center = center;
 		}
 	}
 });

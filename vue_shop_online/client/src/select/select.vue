@@ -324,8 +324,8 @@ export default {
             })
             .then(res => {
                 if (res.data.status.code === '200') {
-                    this.result = res.data.data.result[0];
-                    this.price = res.data.data.result[1].map(function(price) {
+                    this.result = res.data.result[0];
+                    this.price = res.data.result[1].map(function(price) {
                         return price.good_price;
                     });
                 }

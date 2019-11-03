@@ -54,7 +54,7 @@
         <ul class="region">
             <li v-for="(item, index) in regions" :class="{activated: itemIndex == index}" @click="select (item, index)">{{item.region_name}}</li>
         </ul>
-        <div class="confirm-btn">
+        <div class="confirm-btn" @click="next">
             下一步
         </div>
     </div>
@@ -64,17 +64,26 @@ export default {
     data() {
         return {
             itemIndex: null,
-            regions: {}
+            regions: {},
+            regionSelected: null
         }
     },
     methods: {
         select(item, index) {
+            this.regionSelected = item;
             this.itemIndex = index;
+        },
+        next() {
+            this.$store.commit('selectRegion', this.regionSelected);
+            this.$router.push({
+                path: '/center',
+                query: { id: this.$route.query.id }
+            })
         }
     },
     mounted() {
         this.axios
-            .get('/api/goods/shops', {
+            .get('/api/goods/region', {
                 params: {
                     id: this.$route.query.id,
                 },
@@ -82,7 +91,6 @@ export default {
             .then(res => {
                 if (res.data.status.code === '200') {
                     this.regions = res.data.result;
-                    console.log(this.regions)
                     return;
                 }
                 alert(res.data.status.msg);
