@@ -88,6 +88,19 @@ router.get('/select', async (req, res) => {
     })
 });
 
+router.get('/shops', async (req, res) => {
+    const { id } = req.query;
+    const result = await db.query('select * from shop_region');
+
+    res.json({
+        status: {
+            code: '200',
+            msg: 'ok'
+        },
+        result,
+    })
+});
+
 router.get('/pay', async (req, res) => {
     const { id } = req.query;
     const result = await db.query('select * from payment_method');

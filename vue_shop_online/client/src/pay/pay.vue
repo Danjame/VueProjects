@@ -75,6 +75,10 @@
         font-size: 22px;
         line-height: 88px;
     }
+
+    & .actived {
+        background: #F1D500 !important;
+    }
 }
 
 .btn {
@@ -91,10 +95,6 @@
     line-height: 56px;
     text-align: center;
 }
-
-.active {
-    background: #F1D500 !important;
-}
 </style>
 <template>
     <div class="container">
@@ -102,28 +102,25 @@
             选择支付方式
         </div>
         <div class="good-wrapper">
-            <div class="good-img"> 
-                <!-- <img :src="$store.state.selected.color.img"> -->
+            <div class="good-img">
+                <img :src="$store.state.selected.color.img">
             </div>
             <div class="good-info">
                 <div class="good-info-title">
-                    好玩掌机
-                <!-- {{$store.state.itemTitle}} -->
-            </div>
+                    {{$store.state.itemTitle}}
+                </div>
                 <div class="good-info-detail">
                     <div class="good-info-detail-price">
-                        2000元rmb
-                        <!-- ￥{{$store.state.selected.total}} -->
+                        ￥{{$store.state.selected.total}}
                     </div>
                     <span class="good-info-detail-quan">
-                        2
-                        <!-- {{$store.state.selected.quantity}} -->
+                        {{$store.state.selected.quantity}}
                     </span>
                 </div>
             </div>
         </div>
         <div class="payment-wrapper">
-            <div class="payment-method" v-for="(item, index) in payMethods" :class="{active: index === currentIndex}" @click="selectPayment(item, index)">
+            <div class="payment-method" v-for="(item, index) in payMethods" :class="{actived: index === currentIndex}" @click="selectPayment(item, index)">
                 {{item.method}}
             </div>
         </div>
@@ -159,7 +156,7 @@ export default {
         }
     },
     methods: {
-        back(){
+        back() {
             this.showMethod = null;
         },
         selectPayment(item, index) {
@@ -167,7 +164,6 @@ export default {
         },
         next() {
             this.showMethod = this.currentIndex;
-            // this.$router.push({ path: '/', query:{id: this.$route.query.id }})
         }
     },
     mounted() {

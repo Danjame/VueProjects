@@ -73,6 +73,10 @@
             font-size: 20px;
         }
     }
+
+    & .actived {
+        background: #F1D500
+    }
 }
 
 .btn {
@@ -97,10 +101,6 @@
     text-align: center;
     line-height: 40px;
     font-size: 22px;
-}
-
-.actived {
-    background: #F1D500 !important
 }
 </style>
 <template>

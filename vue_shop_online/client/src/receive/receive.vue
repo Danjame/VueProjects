@@ -33,6 +33,11 @@
             font-size: 20px;
         }
     }
+
+    & .selected {
+        background-color: #f1d548;
+        color: #3e0707;
+    }
 }
 
 .btn {
@@ -47,11 +52,6 @@
     line-height: 56px;
     font-size: 22px;
     border-radius: 28px;
-}
-
-.selected {
-    background-color: #f1d548;
-    color: #3e0707;
 }
 
 .colorFul {
@@ -84,7 +84,6 @@ export default {
                 desc: '您可以到附近门店自提'
             }],
             itemIndex: null,
-            information: {}
         }
     },
     methods: {
