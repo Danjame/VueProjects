@@ -148,7 +148,7 @@ export default {
     methods: {
         next() {
             if (this.selectedAdd != null) {
-                this.$store.commit('selectAddress', this.selectedAdd)
+                this.$store.commit('selectAddress', this.selectedAdd);
                 this.$router.push({
                     path: '/pay',
                     query: {

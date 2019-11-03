@@ -21,7 +21,7 @@
             margin-bottom: 18px;
         }
 
-        & .price{
+        & .price {
             text-align: center;
             font-size: 22px;
         }
@@ -48,9 +48,9 @@
         <div>微信支付接口</div>
         <div class="window">
             <p class="text">支付成功</p>
-            <p class="price">{{$store.selected.state.total}}</p>
+            <p class="price">¥{{$store.state.selected.total}}</p>
         </div>
-        <div class="btn" @click= "back">返回</div>
+        <div class="btn" @click="next">完成</div>
     </div>
 </template>
 <script>
@@ -61,10 +61,15 @@ export default {
 
         }
     },
-    methods:{
-        back(){
-            this.$emit('back')
-        },
+    methods: {
+        next() {
+            this.$router.push({
+                path: '/',
+                query: {
+                    id: this.$route.query.id
+                }
+            })
+        }
     }
 }
 </script>

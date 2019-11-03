@@ -124,7 +124,7 @@
                 {{item.method}}
             </div>
         </div>
-        <wechat-pay v-show="showMethod==0" @back="back"></wechat-pay>
+        <wechat-pay v-show="showMethod==0"></wechat-pay>
         <credit-card v-show="showMethod==1"></credit-card>
         <store-pay v-show="showMethod==2"></store-pay>
         <ali-pay v-show="showMethod==3"></ali-pay>
@@ -156,16 +156,11 @@ export default {
         }
     },
     methods: {
-        back() {
-            this.showMethod = null;
-        },
         selectPayment(item, index) {
             this.currentIndex = index;
-            console.log(this.currentIndex);
         },
         next() {
             this.showMethod = this.currentIndex;
-            console.log(this.showMethod);
         }
     },
     mounted() {

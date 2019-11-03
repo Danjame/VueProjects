@@ -46,7 +46,7 @@
 }
 </style>
 <template>
-    <div class="container" @touchmove.prevent>
+    <div class="container">
         <div class="title">基本信息</div>
         <div class="input-wrapper">
             <input type="text" v-model="name" @focus="focusName" @blur="blurName">
@@ -59,11 +59,10 @@
 </template>
 <script>
 export default {
-    name: 'CreditCard',
     data() {
         return {
             name: "姓名",
-            cardNum: "卡号"
+            cardNum: "手机号"
         }
     },
     methods: {
@@ -71,12 +70,12 @@ export default {
             if (this.name == "姓名") {
                 alert("请输入姓名");
                 return;
-            } else if (this.name == "卡号") {
-                alert("请输入卡号");
+            } else if (this.name == "手机号") {
+                alert("请输入手机号");
                 return;
             } else {
                 this.$router.push({
-                    path: '/pay/verification',
+                    path: '/pay',
                     query: {
                         id: this.$route.query.id
                     }
@@ -91,7 +90,7 @@ export default {
             }
         },
         focusCardnum() {
-            if (this.cardNum == "卡号") {
+            if (this.cardNum == "手机号") {
                 this.cardNum = ""
             } else {
                 return
@@ -106,7 +105,7 @@ export default {
         },
         blurCardnum() {
             if (this.cardNum == "") {
-                this.cardNum = "卡号"
+                this.cardNum = "手机号"
             } else {
                 return
             }

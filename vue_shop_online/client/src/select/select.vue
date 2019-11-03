@@ -248,8 +248,8 @@ export default {
             extend: true,
             selected: {
                 color: {
-                    img: '',
-                    color: ''
+                    img: null,
+                    color: null
                 },
                 size: null,
                 quantity: null,
@@ -282,10 +282,10 @@ export default {
             }
         },
         next() {
-            if (this.selected.total == null || this.selected.total == 0 || this.selected.color.color == '') {
+            if (this.selected.total == null || this.selected.total == 0 || this.selected.color.color == null) {
                 return;
             } else {
-                this.$store.commit('selectItem', this.selected)
+                this.$store.commit('selectItem', this.selected);
                 this.$router.push({
                     path: '/receive',
                     query: {
@@ -299,7 +299,7 @@ export default {
         selected: {
             handler: function() {
                 this.selected.total = this.selected.unit * this.selected.quantity;
-                if (this.selected.total == null || this.selected.total == 0 || this.selected.color.color == '') {
+                if (this.selected.total == null || this.selected.total == 0 || this.selected.color.color == null) {
                     return;
                 } else {
                     this.isColorful = true;

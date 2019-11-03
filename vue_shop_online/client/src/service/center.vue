@@ -13,6 +13,7 @@
 
     & .region {
         margin-right: 16px;
+
         & li {
             list-style: none;
             box-sizing: border-box;
@@ -22,15 +23,18 @@
             padding: 24px;
             border-radius: 12px;
             background: white;
-            & .centerName{
+
+            & .centerName {
                 margin-bottom: 10px;
                 font-size: 22px;
             }
-            & .centerAdd{
+
+            & .centerAdd {
                 line-height: 28px;
                 font-size: 20px;
             }
-            & .centerTele{
+
+            & .centerTele {
                 line-height: 28px;
                 font-size: 20px;
             }
@@ -87,10 +91,14 @@ export default {
             this.itemIndex = index;
         },
         next() {
-            this.$router.push({
-                path: '/pay',
-                query: { id: this.$route.query.id }
-            })
+            if (this.itemIndex == null) {
+                alert("请选择一个门店");
+            } else {
+                this.$router.push({
+                    path: '/service/information',
+                    query: { id: this.$route.query.id }
+                })
+            }
         }
     },
     mounted() {

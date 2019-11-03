@@ -45,9 +45,9 @@
 </style>
 <template>
     <div class="container" @touchmove.prevent>
-        <div>支付宝支付接口</div>
+        <div>验证成功</div>
         <div class="window">
-            <p class="text">支付成功</p>
+            <p class="text">成功支付</p>
             <p class="price">¥{{$store.state.selected.total}}</p>
         </div>
         <div class="btn" @click="next">完成</div>
@@ -55,7 +55,6 @@
 </template>
 <script>
 export default {
-    name: 'AliPay',
     data() {
         return {
 

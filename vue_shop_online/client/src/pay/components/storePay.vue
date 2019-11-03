@@ -8,20 +8,24 @@
     background: white;
     z-index: 1;
 
-    & .window {
+    & .title {
+        height: 215px;
+        line-height: 215px;
+        text-align: center;
+        font-size: 22px;
+        margin-bottom: 18px;
+    }
+
+    & .text {
         display: flex;
         flex-direction: column;
         justify-content: center;
-        height: 50%;
-        margin: 0 auto;
+        height: 169px;
+        background: #eee;
 
-        & .text {
-            text-align: center;
-            font-size: 22px;
-            margin-bottom: 18px;
-        }
-
-        & .price{
+        & p {
+            width: 294px;
+            margin: 0 auto;
             text-align: center;
             font-size: 22px;
         }
@@ -46,11 +50,11 @@
 <template>
     <div class="container" @touchmove.prevent>
         <div>到店支付</div>
-        <div class="window">
-            <p class="text">支付成功</p>
-            <p class="price">{{$store.selected.state.total}}</p>
+        <p class="title">预购成功</p>
+        <div class="text">
+            <p>我们会以电话或短信的方式与你取得联系 请保持电话畅通</p>
         </div>
-        <div class="btn" @click= "back">返回</div>
+        <div class="btn" @click="next">完成</div>
     </div>
 </template>
 <script>
@@ -61,10 +65,15 @@ export default {
 
         }
     },
-    methods:{
-        back(){
-            this.$emit('back')
-        },
+    methods: {
+        next() {
+            this.$router.push({
+                path: '/',
+                query: {
+                    id: this.$route.query.id
+                }
+            })
+        }
     }
 }
 </script>

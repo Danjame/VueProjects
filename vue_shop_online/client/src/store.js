@@ -10,8 +10,8 @@ export default new Vuex.Store({
 		method: null,
 		address: null,
 		service:{
-			region: '',
-			center: ''
+			region: null,
+			center: null
 		}
 	},
 	mutations:{

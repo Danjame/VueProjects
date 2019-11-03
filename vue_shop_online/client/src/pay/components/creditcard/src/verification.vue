@@ -66,7 +66,7 @@
             <input type="text" v-model="code">
         </div>
         <div class="btn" @click="next">继续</div>
-        <div class="noCodehelp" @click = "codeHelp">收不到验证码?</div>
+        <div class="noCodehelp" @click="codeHelp">收不到验证码?</div>
     </div>
 </template>
 <script>
@@ -78,10 +78,17 @@ export default {
         }
     },
     methods: {
-        next() {},
-        codeHelp(){
+        next() {
             this.$router.push({
-                path:'/help', 
+                path: '/pay/verification/verifydone',
+                query: {
+                    id: this.$route.query.id
+                }
+            })
+        },
+        codeHelp() {
+            this.$router.push({
+                path: '/pay/verification/help',
             })
         },
     }

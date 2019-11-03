@@ -74,11 +74,15 @@ export default {
             this.itemIndex = index;
         },
         next() {
-            this.$store.commit('selectRegion', this.regionSelected);
-            this.$router.push({
-                path: '/center',
-                query: { id: this.$route.query.id }
-            })
+            if (this.regionSelected == null) {
+                alert("请选择一个大区");
+            } else {
+                this.$store.commit('selectRegion', this.regionSelected);
+                this.$router.push({
+                    path: '/service/center',
+                    query: { id: this.$route.query.id }
+                })
+            }
         }
     },
     mounted() {

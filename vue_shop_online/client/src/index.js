@@ -16,6 +16,8 @@ import Receive from './receive/receive.vue'
 import Address from './address/address.vue'
 import Region from './service/region.vue'
 import Center from './service/center.vue'
+import Information from './service/information.vue'
+import Verifydone from './pay/components/creditcard/src/verifyDone.vue'
 import Pay from './pay/pay.vue'
 import Verification from './pay/components/creditcard/src/verification.vue'
 import Help from './pay/components/creditcard/src/help.vue'
@@ -42,25 +44,33 @@ let router = new VueRouter({
             component: Address
         },
         {
-            path: '/region',
+            path: '/service/region',
             component: Region
         },
         {
-            path: '/center',
+            path: '/service/center',
             component: Center
+        },
+        {
+            path: '/service/information',
+            component: Information
         },
         {
             path: '/pay',
             component: Pay
         },
         {
-            path: '/verification',
+            path: '/pay/verification',
             component: Verification
         },
         {
-            path: '/help',
+            path: '/pay/verification/help',
             component: Help
-        }
+        },
+        {
+            path: '/pay/verification/verifydone',
+            component: Verifydone
+        },
     ]
 });
 
