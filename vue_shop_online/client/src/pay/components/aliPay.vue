@@ -31,10 +31,10 @@
         position: fixed;
         width: 264px;
         height: 56px;
-        margin: 0 auto;
         left: 0;
         right: 0;
         bottom: 25px;
+        margin: 0 auto;
         border-radius: 28px;
         background: #F1D500;
         font-size: 25px;

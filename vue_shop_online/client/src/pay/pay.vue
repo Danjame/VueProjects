@@ -81,10 +81,10 @@
     width: 264px;
     height: 56px;
     position: fixed;
-    margin: 0 auto;
     left: 0;
     right: 0;
     bottom: 25px;
+    margin: 0 auto;
     border-radius: 28px;
     background: #F1D500;
     font-size: 25px;
@@ -139,7 +139,7 @@
 </template>
 <script>
 import WechatPay from './components/wechatPay.vue'
-import CreditCard from './components/creditCard.vue'
+import CreditCard from './components/creditcard/creditCard.vue'
 import StorePay from './components/storePay.vue'
 import AliPay from './components/aliPay.vue'
 import UnionPay from './components/unionPay.vue'

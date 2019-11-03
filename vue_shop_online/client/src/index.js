@@ -12,10 +12,11 @@ import App from './app.vue'
 import Index from './index/index.vue'
 import Detail from './detail/detail.vue'
 import Select from './select/select.vue'
-import Pay from './pay/pay.vue'
 import Receive from './receive/receive.vue'
 import Address from './address/address.vue'
 import Shops from './shops/shops.vue'
+import Pay from './pay/pay.vue'
+import Verification from './pay/components/creditcard/src/verification.vue'
 
 let router = new VueRouter({
     routes: [{
@@ -39,13 +40,16 @@ let router = new VueRouter({
             component: Address
         },
         {
+            path: '/shops',
+            component: Shops
+        },
+        {
             path: '/pay',
             component: Pay
         },
-
         {
-            path: '/shops',
-            component: Shops
+            path: '/verification',
+            component: Verification
         }
     ]
 });
