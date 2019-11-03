@@ -48,7 +48,7 @@
         <div>到店支付</div>
         <div class="window">
             <p class="text">支付成功</p>
-            <p class="price">2200</p>
+            <p class="price">{{$store.selected.state.total}}</p>
         </div>
         <div class="btn" @click= "back">返回</div>
     </div>

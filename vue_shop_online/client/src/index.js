@@ -17,6 +17,7 @@ import Address from './address/address.vue'
 import Shops from './shops/shops.vue'
 import Pay from './pay/pay.vue'
 import Verification from './pay/components/creditcard/src/verification.vue'
+import Help from './pay/components/creditcard/src/help.vue'
 
 let router = new VueRouter({
     routes: [{
@@ -50,6 +51,10 @@ let router = new VueRouter({
         {
             path: '/verification',
             component: Verification
+        },
+        {
+            path: '/help',
+            component: Help
         }
     ]
 });

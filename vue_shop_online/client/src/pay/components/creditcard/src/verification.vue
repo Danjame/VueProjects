@@ -47,10 +47,11 @@
 
     & .noCodehelp{
         position: fixed;
-        width: auto;
+        width: 140px;
         left: 0;
         right: 0;
         bottom: 25px;
+        margin: 0 auto;
         text-align: center;
         font-size: 20px;
     }
@@ -79,7 +80,9 @@ export default {
     methods: {
         next() {},
         codeHelp(){
-            
+            this.$router.push({
+                path:'/help', 
+            })
         },
     }
 }
