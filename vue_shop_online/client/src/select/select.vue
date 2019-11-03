@@ -32,6 +32,7 @@ li {
         }
 
         &-text {
+            border-radius: 8px;
             font-size: 22px;
             line-height: 30px;
         }
@@ -207,7 +208,7 @@ li {
         <div class="size-wrapper">
             <div class="item-title">选择尺码/版本</div>
             <ul class="item-size">
-                <li v-for="(item, index) in result" :class="{activated:index == sizeIndex}" @click="selectSize(item, index)">{{item.size}}</li>
+                <li :class="{activated:index == sizeIndex}" v-for="(item, index) in result" @click="selectSize(item, index)">{{item.size}}</li>
             </ul>
         </div>
         <div class="quantity-wrapper">
@@ -219,7 +220,7 @@ li {
                         <div class="item-extend-arrow-bottom"></div>
                     </span>
                 </div>
-                <li v-for="(item, index) in quantity" :class="{activated: index == numIndex}" @click="selectNum(item, index)">{{item}}</li>
+                <li :class="{activated: index == numIndex}" v-for="(item, index) in quantity" @click="selectNum(item, index)">{{item}}</li>
                 <span class="item-rollup" v-show="extend == false" @click="extendMore">收起
                     <span class="item-rollup-arrow">
                         <div class="item-rollup-arrow-top"></div>
@@ -247,8 +248,8 @@ export default {
             extend: true,
             selected: {
                 color: {
-                    img: null,
-                    color: null
+                    img: '',
+                    color: ''
                 },
                 size: null,
                 quantity: null,
@@ -281,7 +282,7 @@ export default {
             }
         },
         next() {
-            if (this.selected.total == null || this.selected.total == 0 || this.selected.color.color == null) {
+            if (this.selected.total == null || this.selected.total == 0 || this.selected.color.color == '') {
                 return;
             } else {
                 this.$store.commit('selectItem', this.selected)
@@ -294,16 +295,11 @@ export default {
             }
         }
     },
-    computed: {
-        updataTotal() {
-            return
-        }
-    },
     watch: {
         selected: {
             handler: function() {
                 this.selected.total = this.selected.unit * this.selected.quantity;
-                if (this.selected.total == null || this.selected.total == 0 || this.selected.color.color == null) {
+                if (this.selected.total == null || this.selected.total == 0 || this.selected.color.color == '') {
                     return;
                 } else {
                     this.isColorful = true;

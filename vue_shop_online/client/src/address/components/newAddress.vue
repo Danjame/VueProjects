@@ -327,6 +327,9 @@ export default {
     },
     methods: {
         handleBack() {
+            this.province = '';
+            this.cities.length = 0;
+            this.districts.length = 0;
             this.$emit("back")
         },
         showSelector() {

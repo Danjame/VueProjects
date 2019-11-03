@@ -108,7 +108,7 @@
         <div class="isEmpty" v-if="addresses.length == 0">亲，你还没有添加地址哦～</div>
         <div class="address-title" v-else>选择地址</div>
         <div class="address-wrapper">
-            <div class="address-item" v-for="(item, index) in addresses" :class="{actived: selected}" @click="select(item, index)">
+            <div class="address-item" :class="{actived: selected == index}" v-for="(item, index) in addresses" @click="select(item, index)">
                 <span class="address-item-delete" @click.stop="deleteCurrentItem(item, index)">删除</span>
                 <span class="address-item-edit" @click.stop="editCurrentItem(item, index)">修改</span>
                 <p class="address-item-name">{{item.name}}</p>
@@ -116,8 +116,8 @@
                 <p class="address-item-local">{{item.region}} {{item.local}}</p>
             </div>
         </div>
-        <new-address :newAdd="newAdd" @close="closeAddress" @back="back" v-show="newAdd"></new-address>
-        <edit-address :editItem="editItem" @edit="editAddress" v-show="editAdd"></edit-address>
+        <new-address :newAdd="newAdd" v-show="newAdd" @close="closeAddress" @back="back"></new-address>
+        <edit-address :editItem="editItem" v-show="editAdd" @edit="editAddress"></edit-address>
         <div class="btn" v-if="addresses.length == 0" @click="handleAddress">
             + &nbsp;添加新地址
         </div>
@@ -139,7 +139,7 @@ export default {
         return {
             newAdd: false,
             editAdd: false,
-            selected: false,
+            selected: null,
             addresses: [],
             editItem: null,
             selectedAdd: null,
@@ -164,6 +164,9 @@ export default {
         },
         deleteCurrentItem(item, index) {
             this.addresses.splice(index, 1);
+            if (this.addresses.length == 0){
+                this.selected = null;
+            }
         },
         editCurrentItem(item, index) {
             this.editItem = item;
@@ -171,7 +174,7 @@ export default {
             this.editAdd = true;
         },
         select(item, index) {
-            this.selected = true;
+            this.selected = index;
             this.selectedAdd = item;
         },
         handleAddress() {

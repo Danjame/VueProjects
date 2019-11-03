@@ -52,7 +52,7 @@
             选择门店
         </div>
         <ul class="region">
-            <li v-for="(item, index) in regions" :class="{activated: itemIndex == index}" @click="select (item, index)">{{item.region_name}}</li>
+            <li :class="{activated: itemIndex == index}" v-for="(item, index) in regions" @click="select (item, index)">{{item.region_name}}</li>
         </ul>
         <div class="confirm-btn" @click="next">
             下一步

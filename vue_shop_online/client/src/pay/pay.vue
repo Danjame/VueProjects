@@ -120,7 +120,7 @@
             </div>
         </div>
         <div class="payment-wrapper">
-            <div class="payment-method" v-for="(item, index) in payMethods" :class="{actived: index === currentIndex}" @click="selectPayment(item, index)">
+            <div class="payment-method" :class="{actived: currentIndex == index }" v-for="(item, index) in payMethods" @click="selectPayment(item, index)">
                 {{item.method}}
             </div>
         </div>
@@ -161,9 +161,11 @@ export default {
         },
         selectPayment(item, index) {
             this.currentIndex = index;
+            console.log(this.currentIndex);
         },
         next() {
             this.showMethod = this.currentIndex;
+            console.log(this.showMethod);
         }
     },
     mounted() {

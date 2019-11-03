@@ -62,7 +62,7 @@
     <div>
         <div class="title">选择收货方式</div>
         <div class="method">
-            <div class="method-wrapper" :class="{selected: itemIndex == index }" v-for="(content, index) in delivery" @click="select(index)">
+            <div class="method-wrapper" :class="{selected: itemIndex == index}" v-for="(content, index) in delivery" @click="select(index)">
                 <p class="method-wrapper-name">{{content.name}}</p>
                 <p class="method-wrapper-desc">{{content.desc}}</p>
             </div>

@@ -62,7 +62,7 @@
             {{region.region_name}}
         </div>
         <ul class="region">
-            <li v-for="(item, index) in centers" :class="{activated: itemIndex == index}" @click="select (item, index)">
+            <li :class="{activated: itemIndex == index}" v-for="(item, index) in centers" @click="select (item, index)">
                 <p class="centerName">{{item.center_name}}</p>
                 <p class="centerAdd">{{item.center_address}}</p>
                 <p class="centerTele">{{item.center_tele}}</p>

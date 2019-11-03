@@ -11,7 +11,7 @@ export default new Vuex.Store({
 		address: null,
 		service:{
 			region: '',
-			center:''
+			center: ''
 		}
 	},
 	mutations:{
