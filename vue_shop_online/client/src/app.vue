@@ -1,12 +1,14 @@
 <template>
     <div>
-        <router-view/>
+        <keep-alive>
+            <router-view />
+        </keep-alive>
     </div>
 </template>
 <script>
-    export default {
-        data(){
-            return {}
-        }
+export default {
+    data() {
+        return {}
     }
+}
 </script>

@@ -45,7 +45,7 @@
 </style>
 <template>
     <div class="container" @touchmove.prevent>
-        <div>银联闪付</div>
+        <div>银联闪付接口</div>
         <div class="window">
             <p class="text">支付成功</p>
             <p class="price">¥{{$store.state.selected.total}}</p>

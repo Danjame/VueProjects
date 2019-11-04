@@ -68,12 +68,10 @@ export default {
     },
     methods: {
         next() {
-            if (this.name == "姓名") {
+            if (this.name == "姓名" || this.name == "") {
                 alert("请输入姓名");
-                return;
-            } else if (this.name == "卡号") {
+            } else if (this.cardNum == "卡号" || this.cardNum == "") {
                 alert("请输入卡号");
-                return;
             } else {
                 this.$router.push({
                     path: '/pay/verification',

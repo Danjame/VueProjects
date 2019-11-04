@@ -51,7 +51,7 @@
         <div class="input-wrapper">
             <input type="text" v-model="name" @focus="focusName" @blur="blurName">
             <hr />
-            <input type="text" v-model="cardNum" @focus="focusCardnum" @blur="blurCardnum">
+            <input type="text" v-model="tele" @focus="focusTele" @blur="blurTele">
             <hr />
         </div>
         <div class="btn" @click="next">下一步</div>
@@ -62,17 +62,15 @@ export default {
     data() {
         return {
             name: "姓名",
-            cardNum: "手机号"
+            tele: "手机号"
         }
     },
     methods: {
         next() {
-            if (this.name == "姓名") {
+            if (this.name == "姓名" || this.name == "") {
                 alert("请输入姓名");
-                return;
-            } else if (this.name == "手机号") {
+            } else if (this.tele == "手机号" || this.tele == "") {
                 alert("请输入手机号");
-                return;
             } else {
                 this.$router.push({
                     path: '/pay',
@@ -89,9 +87,9 @@ export default {
                 return
             }
         },
-        focusCardnum() {
-            if (this.cardNum == "手机号") {
-                this.cardNum = ""
+        focusTele() {
+            if (this.tele == "手机号") {
+                this.tele = ""
             } else {
                 return
             }
@@ -103,9 +101,9 @@ export default {
                 return
             }
         },
-        blurCardnum() {
-            if (this.cardNum == "") {
-                this.cardNum = "手机号"
+        blurTele() {
+            if (this.tele == "") {
+                this.tele = "手机号"
             } else {
                 return
             }
