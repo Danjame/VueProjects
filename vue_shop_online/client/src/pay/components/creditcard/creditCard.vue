@@ -70,7 +70,7 @@ export default {
         next() {
             if (this.name == "姓名" || this.name == "") {
                 alert("请输入姓名");
-            } else if (this.cardNum == "卡号" || this.cardNum == "") {
+            } else if (this.cardNum == "卡号" || !this.cardNum) {
                 alert("请输入卡号");
             } else {
                 this.$router.push({
@@ -84,29 +84,21 @@ export default {
         focusName() {
             if (this.name == "姓名") {
                 this.name = ""
-            } else {
-                return
             }
         },
         focusCardnum() {
             if (this.cardNum == "卡号") {
                 this.cardNum = ""
-            } else {
-                return
             }
         },
         blurName() {
-            if (this.name == "") {
+            if (!this.name) {
                 this.name = "姓名"
-            } else {
-                return
             }
         },
         blurCardnum() {
-            if (this.cardNum == "") {
+            if (!this.cardNum) {
                 this.cardNum = "卡号"
-            } else {
-                return
             }
         }
     }

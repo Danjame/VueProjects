@@ -74,7 +74,7 @@ export default {
             this.itemIndex = index;
         },
         next() {
-            if (this.regionSelected == null) {
+            if (!this.regionSelected) {
                 alert("请选择一个大区");
             } else {
                 this.$store.commit('selectRegion', this.regionSelected);

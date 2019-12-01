@@ -147,7 +147,7 @@ export default {
     },
     methods: {
         next() {
-            if (this.selectedAdd != null) {
+            if (this.selectedAdd) {
                 this.$store.commit('selectAddress', this.selectedAdd);
                 this.$router.push({
                     path: '/pay',
@@ -164,7 +164,7 @@ export default {
         },
         deleteCurrentItem(item, index) {
             this.addresses.splice(index, 1);
-            if (this.addresses.length == 0){
+            if (!this.addresses.length){
                 this.selected = null;
             }
         },

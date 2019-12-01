@@ -275,16 +275,14 @@ export default {
             this.selected.quantity = item;
         },
         extendMore() {
-            if (this.extend == true) {
+            if (this.extend) {
                 this.extend = false
             } else {
                 this.extend = true
             }
         },
         next() {
-            if (this.selected.total == null || this.selected.total == 0 || this.selected.color.color == null) {
-                return;
-            } else {
+            if (this.selected.total && this.selected.color.color) {
                 this.$store.commit('selectItem', this.selected);
                 this.$router.push({
                     path: '/receive',
@@ -299,9 +297,7 @@ export default {
         selected: {
             handler: function() {
                 this.selected.total = this.selected.unit * this.selected.quantity;
-                if (this.selected.total == null || this.selected.total == 0 || this.selected.color.color == null) {
-                    return;
-                } else {
+                if (this.selected.total && this.selected.color.color) {
                     this.isColorful = true;
                 }
             },

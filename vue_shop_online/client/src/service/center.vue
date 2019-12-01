@@ -91,7 +91,7 @@ export default {
             this.itemIndex = index;
         },
         next() {
-            if (this.itemIndex == null) {
+            if (!this.itemIndex) {
                 alert("请选择一个门店");
             } else {
                 this.$router.push({

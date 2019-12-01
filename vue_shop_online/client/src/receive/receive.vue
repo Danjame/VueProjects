@@ -91,7 +91,7 @@ export default {
             this.itemIndex = index;
         },
         next() {
-            if (this.itemIndex == 0) {
+            if (!this.itemIndex) {
                 this.$store.commit('receiveMethod', this.delivery[this.itemIndex].name);
                 this.$router.push({ path: '/address', query: { id: this.$route.query.id } })
             } else if (this.itemIndex == 1) {

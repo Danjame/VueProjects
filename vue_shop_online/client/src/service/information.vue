@@ -83,29 +83,21 @@ export default {
         focusName() {
             if (this.name == "姓名") {
                 this.name = ""
-            } else {
-                return
             }
         },
         focusTele() {
             if (this.tele == "手机号") {
                 this.tele = ""
-            } else {
-                return
             }
         },
         blurName() {
-            if (this.name == "") {
+            if (!this.name) {
                 this.name = "姓名"
-            } else {
-                return
             }
         },
         blurTele() {
-            if (this.tele == "") {
+            if (!this.tele) {
                 this.tele = "手机号"
-            } else {
-                return
             }
         }
     }
