@@ -1,6 +1,6 @@
 # Vue.js Projects
 ## Online Shop
-###features:
+### Features
 1. Selection of articles, colors, types and quantity.
 2. Selection of goods-taking area and fisical shop.
 3. Add, edit and remove addresses.
