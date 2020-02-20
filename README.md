@@ -1,4 +1,11 @@
 # Vue.js Projects
+## Online Shop
+###features:
+1. Selection of articles, colors, types and quantity.
+2. Selection of goods-taking area and fisical shop.
+3. Add, edit and remove addresses.
 
-1. Shop online developed with Vue.js
-* Back-End data from tables built on db4free.
+### Stack
++ Navigation based on Vue Router.
++ State management based on Vuex.
++ Data base based on Mysql, built on db4free.
